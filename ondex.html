@@ -11,9 +11,10 @@
 	console.log( $( "textarea" ).val(  ) );
 	*/
 
-	function foo( val ) { 
+	function foo( data ) { 
 	  //alert( val );
-	  console.log( val );
+	  console.log( data );
+	  $( "textarea" ).val( data )
 	}
 
 	$.get( "readme.md", function( data ) {
