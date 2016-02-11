@@ -9,21 +9,17 @@
 	/*
 	// try to read the input of the textarea, but does not work
 	console.log( $( "textarea" ).val(  ) );
-
-
-    // try to get the content of readme.md, but does not work. Message: Nicht wohlgeformt
-	$.get( "readme.md", function( data ) {
-	  alert( "" + data + "" );
-	});
 	*/
 
-    // try to get the content of readme.md, but does not work. Message: Nicht wohlgeformt
-	$.ajax({
-	  method: "GET",
-	  url: "readme.md",
-	  dataType: "text",
-	  function( data ) { alert( data ); }
+	function foo( val ) { 
+	  alert( val );
+	}
+
+	$.get( "readme.md", function( data ) {
+	  foo( data );
 	});
+
+
   </script>
 </head>
 
