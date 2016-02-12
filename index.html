@@ -68,6 +68,7 @@ In the browser or via curl. I had the problem that some integers where recognize
 
 Changing mappings is not directly possible. There are some [workarounds]( https://www.elastic.co/blog/changing-mapping-with-zero-downtime ). Otherwise you can [create the index]( https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html ) with [correct mappings]( https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html ) and import the data again. 
 
+As german dates are not english once, its possible to specify the [date format]( https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html )
 # Kibana
 Open kibana in your webbrowser http://localhost:5601. Tell kibana to use the index *chef* and that you are not using the time-based-thing. 
 
