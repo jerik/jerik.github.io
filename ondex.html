@@ -9,21 +9,19 @@
 	/*
 	// try to read the input of the textarea, but does not work
 	console.log( $( "textarea" ).val(  ) );
+	console.log( $( '#ta' ).val(  ) );
+  	var taval = $( 'textarea#ta' ).val(  );
+	console.log( taval );
 	*/
 
-	function foo( data ) { 
-	  //alert( val );
-	  console.log( data );
-	}
-
+  	console.log( 'start logging' );
 	$.get( "readme.md", function( data ) {
-	  foo( data );
+	  	console.log( data );
 	});
-
+  	console.log( 'end logging' );
 
   </script>
 </head>
-
 <body>
 <center>das iste in test</center>
 <textarea id="ta" theme="cerulean" style="display:none;">
