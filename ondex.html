@@ -16,16 +16,16 @@
 
   	console.log( 'start logging' );
 	$.get( "readme.md", function( data ) {
+		$( 'textarea' ).val( data );
 	  	console.log( data );
-	});
+	}, 'text');
   	console.log( 'end logging' );
 
   </script>
 </head>
 <body>
 <center>das iste in test</center>
-<textarea id="ta" theme="cerulean" style="display:none;">
-hallo
+<textarea theme="cerulean" style="display:none;">
 </textarea>
 <script src="v/0.2/strapdown.js"></script>
 </body>
