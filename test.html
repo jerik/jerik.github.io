@@ -19,7 +19,14 @@
 	
 	function showmd( value ) { 
 		$( "xmp" ).html( value );
-		$.getScript("http://strapdownjs.com/v/0.2/strapdown.js").done( function(  ) { console.log( "loaded" ) } );
+		var lhref = location.href;
+		originPath = lhref.substr(0, lhref.lastIndexOf('/'));
+		fullPath = originPath + '/v/0.2/strapdown.js'  ;
+		console.log( location.href );
+		console.log( lhref );
+		console.log( originPath );
+		console.log( fullPath );
+		$.getScript(fullPath).done( function(  ) { console.log( "loaded" ) } );
 	}
 
 	$.get( "readme.md", function( data ) {
