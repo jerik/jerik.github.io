@@ -4,6 +4,8 @@
   <meta charset="utf-8" />
   <title>Jerik's this and that</title>
   <meta name="description" content="Some stuff that I want to mention" />
+  <!-- added stylesheet manually, normaly strapdown does this for me autoamatically. Does not work now -->
+  <!-- link rel="stylesheet" href="v/0.2/strapdown.css" type="text/css" media="screen" charset="utf-8"-->
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script type="text/javascript" charset="utf-8">
 	/*
@@ -29,7 +31,7 @@
 </head>
 <body>
 <div id="first">das iste in test</div>
-<script src="v/0.2/strapdown.js"></script>
+<!--script src="v/0.2/strapdown.js"></script-->
 <script type="text/javascript" charset="utf-8">
 	// http://stackoverflow.com/questions/11917734/jquery-ajax-call-success-how-do-i-change-a-global-variable-in-the-wrapper-javas
 	
@@ -38,6 +40,7 @@
 		// alert( strap );
 		$( "#first" ).after( strap );
 		// here i have to call strapdown first, otherwise it looks directly for strapdown, but it does not show, as the asynccalls is not finished yet
+		$.getScript("v/0.2/strapdown.js").done( function(  ) { console.log( "loaded" ) } );
 	}
 
 	var mdcontent;
