@@ -19,10 +19,10 @@
 	
 	function showmd( value ) { 
 		$( "xmp" ).html( value );
-		$.getScript("v/0.2/strapdown.js").done( function(  ) { console.log( "loaded" ) } );
+		$.getScript("http://strapdownjs.com/v/0.2/strapdown.js").done( function(  ) { console.log( "loaded" ) } );
 	}
 
-	$.get( "readme.md", function( data ) {
+	$.get( "content/getStartedKibana4.md", function( data ) {
 		showmd( data );
 	}, 'text');
 </script>
