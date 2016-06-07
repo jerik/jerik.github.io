@@ -14,19 +14,37 @@
 	console.log( taval );
 	*/
 
+  /*
   	console.log( 'start logging' );
+	// http://stackoverflow.com/questions/7598821/return-responsetext-from-jquery-get
 	$.get( "readme.md", function( data ) {
-		$( 'textarea' ).val( data );
+		// $( 'textarea' ).val( data );
 	  	console.log( data );
 	}, 'text');
   	console.log( 'end logging' );
+	*/
+
 
   </script>
 </head>
 <body>
-<center>das iste in test</center>
-<textarea theme="cerulean" style="display:none;">
-</textarea>
+<div id="first">das iste in test</div>
 <script src="v/0.2/strapdown.js"></script>
+<script type="text/javascript" charset="utf-8">
+	// http://stackoverflow.com/questions/11917734/jquery-ajax-call-success-how-do-i-change-a-global-variable-in-the-wrapper-javas
+	
+	function showmd( value ) { 
+		var strap = '<xmp theme="cerulean">' + value + '</xmp>';
+		// alert( strap );
+		$( "#first" ).after( strap );
+		// here i have to call strapdown first, otherwise it looks directly for strapdown, but it does not show, as the asynccalls is not finished yet
+	}
+
+	var mdcontent;
+	$.get( "readme.md", function( data ) {
+		// $( 'textarea' ).val( data );
+		showmd( data );
+	}, 'text');
+</script>
 </body>
 </html>
