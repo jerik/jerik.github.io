@@ -4,19 +4,11 @@
   <meta charset="utf-8" />
   <title>Jerik's this and that</title>
   <meta name="description" content="Some stuff that I want to mention" />
-  <!-- added stylesheet manually, normaly strapdown does this for me autoamatically. Does not work now -->
-  <link rel="stylesheet" href="v/0.2/strapdown.css" type="text/css" media="screen" charset="utf-8">
-  <link rel="stylesheet" href="v/0.2/themes/cerulean.min.css" type="text/css" media="screen" charset="utf-8">
-  <link rel="stylesheet" href="v/0.2/themes/bootstrap-responsive.min.css" type="text/css" media="screen"
-  charset="utf-8">
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
 <xmp theme="cerulean" style="display:none;"></xmp>
 <script type="text/javascript" charset="utf-8">
-	// http://stackoverflow.com/questions/11917734/jquery-ajax-call-success-how-do-i-change-a-global-variable-in-the-wrapper-javas
-	// http://stackoverflow.com/questions/7598821/return-responsetext-from-jquery-get
-	
 	function showmd( value ) { 
 		$( "xmp" ).html( value );
 		$.getScript("http://strapdownjs.com/v/0.2/strapdown.js").done( function(  ) { console.log( "loaded" ) } );
