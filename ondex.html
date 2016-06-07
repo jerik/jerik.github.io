@@ -9,45 +9,19 @@
   <link rel="stylesheet" href="v/0.2/themes/cerulean.min.css" type="text/css" media="screen" charset="utf-8">
   <link rel="stylesheet" href="v/0.2/themes/bootstrap-responsive.min.css" type="text/css" media="screen" charset="utf-8">
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-  <script type="text/javascript" charset="utf-8">
-	/*
-	// try to read the input of the textarea, but does not work
-	console.log( $( "textarea" ).val(  ) );
-	console.log( $( '#ta' ).val(  ) );
-  	var taval = $( 'textarea#ta' ).val(  );
-	console.log( taval );
-	*/
-
-  /*
-  	console.log( 'start logging' );
-	$.get( "readme.md", function( data ) {
-		// $( 'textarea' ).val( data );
-	  	console.log( data );
-	}, 'text');
-  	console.log( 'end logging' );
-	*/
-
-
-  </script>
 </head>
 <body>
-<div id="first"></div>
-<!--script src="v/0.2/strapdown.js"></script-->
+<xmp theme="cerulean" style="display:none;"></xmp>
 <script type="text/javascript" charset="utf-8">
 	// http://stackoverflow.com/questions/11917734/jquery-ajax-call-success-how-do-i-change-a-global-variable-in-the-wrapper-javas
 	// http://stackoverflow.com/questions/7598821/return-responsetext-from-jquery-get
 	
 	function showmd( value ) { 
-		var strap = '<xmp theme="cerulean">' + value + '</xmp>';
-		// alert( strap );
-		$( "#first" ).after( strap );
-		// here i have to call strapdown first, otherwise it looks directly for strapdown, but it does not show, as the asynccalls is not finished yet
+		$( "xmp" ).html( value );
 		$.getScript("v/0.2/strapdown.js").done( function(  ) { console.log( "loaded" ) } );
 	}
 
-	var mdcontent;
 	$.get( "readme.md", function( data ) {
-		// $( 'textarea' ).val( data );
 		showmd( data );
 	}, 'text');
 </script>
