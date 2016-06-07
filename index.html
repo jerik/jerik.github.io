@@ -11,13 +11,7 @@
 <script type="text/javascript" charset="utf-8">
 	function showmd( value ) { 
 		$( "xmp" ).html( value );
-		//var scriptPath = $( '#strapdown' )[0].src;
-		var scriptPath = "v/0.2/strapdown.js";
-		// http://stackoverflow.com/a/27094711/1933185
-		$( '<script>' ).attr( 'type', 'text/javascript' ).attr( 'src', scriptPath ).appendTo( 'head' );
-		// alterative: http://stackoverflow.com/a/28626155/1933185
-		//$( 'head' ).append( '<script src="v/0.2/strapdown.js"><\/script>' );
-		//$.getScript("http://strapdownjs.com/v/0.2/strapdown.js").done( function(  ) { console.log( "loaded" ) } );
+		$( 'head' ).append( '<script src="v/0.2/strapdown.js"><\/script>' );
 	}
 
 	$.get( "content/getStartedKibana4.md", function( data ) {
