@@ -8,3 +8,5 @@ snippset and things I want to capture / document
 - perhaps integrate gist, so that I can download the gist and save it in the jerik.github.io? Easy to integrate, but I do not have the gist-code in this git repo...
 - To get the markdown files automated. Try to read the \*.md files and shove them into the textarea field? I have access to files if I know the name e.g. readme.md. The
   textarea field will be replace by the div id="content", I have to inject the markdown syntax there somewhere
+- create a [custom domain]( https://help.github.com/articles/using-a-custom-domain-with-github-pages/ )
+- optional inform about jekyll: https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/
