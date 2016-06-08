@@ -5,6 +5,7 @@
   <title>Jerik's this and that</title>
   <meta name="description" content="Some stuff that I want to mention" />
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="function.js"></script>
 </head>
 <body>
 <xmp theme="cerulean" style="display:none;"></xmp>
@@ -14,7 +15,10 @@
 		$( 'head' ).append( '<script src="v/0.2/strapdown.js"><\/script>' );
 	}
 
-	$.get( "content/getStartedKibana4.md", function( data ) {
+	var md = getUrlParameter( "md" ) || "getStartedKibana4";
+	var pathmd = "content/" + md + ".md";
+
+	$.get( pathmd, function( data ) {
 		showmd( data );
 	}, 'text');
 </script>
