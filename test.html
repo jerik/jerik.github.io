@@ -4,32 +4,24 @@
   <meta charset="utf-8" />
   <title>Jerik's this and that</title>
   <meta name="description" content="Some stuff that I want to mention" />
-  <!-- added stylesheet manually, normaly strapdown does this for me autoamatically. Does not work now -->
-  <!-- link rel="stylesheet" href="v/0.2/strapdown.css" type="text/css" media="screen" charset="utf-8">
-  <link rel="stylesheet" href="v/0.2/themes/cerulean.min.css" type="text/css" media="screen" charset="utf-8">
-  <link rel="stylesheet" href="v/0.2/themes/bootstrap-responsive.min.css" type="text/css" media="screen"
-  charset="utf-8"-->
+  <!--link rel="stylesheet" href="v/0.2/themes/bootstrap.min.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="v/0.2/custom.min.css" type="text/css" media="screen" charset="utf-8"-->
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="function.js"></script>
 </head>
 <body>
+<div class="navbar navbar-fixed-top"><div class="navbar-inner"> <div class="container"> <div id="headline" class="brand">Jerik's test</div> </div> </div></div>
 <xmp theme="cerulean" style="display:none;"></xmp>
 <script type="text/javascript" charset="utf-8">
-	// http://stackoverflow.com/questions/11917734/jquery-ajax-call-success-how-do-i-change-a-global-variable-in-the-wrapper-javas
-	// http://stackoverflow.com/questions/7598821/return-responsetext-from-jquery-get
-	
 	function showmd( value ) { 
 		$( "xmp" ).html( value );
-		var lhref = location.href;
-		originPath = lhref.substr(0, lhref.lastIndexOf('/'));
-		fullPath = originPath + '/v/0.2/strapdown.js'  ;
-		console.log( location.href );
-		console.log( lhref );
-		console.log( originPath );
-		console.log( fullPath );
-		$.getScript(fullPath).done( function(  ) { console.log( "loaded" ) } );
+		$( 'head' ).append( '<script src="v/0.2/strapdown.js"><\/script>' );
 	}
 
-	$.get( "readme.md", function( data ) {
+	var md = getUrlParameter( "md" ) || "getStartedKibana4";
+	var pathmd = "content/" + md + ".md";
+
+	$.get( pathmd, function( data ) {
 		showmd( data );
 	}, 'text');
 </script>
