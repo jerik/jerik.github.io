@@ -60,4 +60,7 @@ As german dates are not english once, its possible to specify the [date format](
 # Kibana
 Open kibana in your webbrowser http://localhost:5601. Tell kibana to use the index *chef* and that you are not using the time-based-thing. 
 
-If you click on *Discover* you get your chef/cooking data presented and can start to dig/configure around. 
+If you click on *Discover* you get your chef/cooking data presented and can start to dig/configure around.
+
+---
+Created: 2016-02-11 
