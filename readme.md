@@ -11,3 +11,8 @@ snippset and things I want to capture / document
   textarea field will be replace by the div id="content", I have to inject the markdown syntax there somewhere
 - create a [custom domain]( https://help.github.com/articles/using-a-custom-domain-with-github-pages/ )
 - optional inform about jekyll: https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/
+
+## todos leanCanvas
+- read leanCanvas.md, with # Problem, # Solution etc as headings. # Project, for the projekt title and integrate it in the leanCanvas.html
+- make divs flexible, so that it can resize depeding on the content size
+- make help-per-topic, which shows some example question with an onmouseover
