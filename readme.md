@@ -16,3 +16,4 @@ snippset and things I want to capture / document
 - read leanCanvas.md, with # Problem, # Solution etc as headings. # Project, for the projekt title and integrate it in the leanCanvas.html
 - make divs flexible, so that it can resize depeding on the content size
 - make help-per-topic, which shows some example question with an onmouseover
+- make leanCanvas and BusinessCanvas
