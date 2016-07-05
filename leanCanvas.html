@@ -75,7 +75,7 @@
 	<script type="text/javascript" charset="utf-8">
 	function showmd( value ) { 
 		// alert( value );
-		var conv = new showdown.Converter(  ), text = "# hello, markdown", html = conv.makeHtml( text );
+		var conv = new showdown.Converter(  ), text = value, html = conv.makeHtml( text );
 		$( "#foo" ).html( html );
 		alert( html );
 	}
