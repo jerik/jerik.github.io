@@ -73,11 +73,42 @@
     </div>
 	
 	<script type="text/javascript" charset="utf-8">
+	function doSections( md ) { 
+		var result = md.split( "#" );
+		var sections = {  };
+		console.log( result );
+		$.each( result, function( key, value ) { 
+			if ( value != "" ) {  
+				//console.log( key + ": " + value );
+
+				// get the heading
+				var header = value.split( "\n" );
+				//console.log( key + ":" +header[0] );
+
+				// add header to the section
+				sections[header[0].toLowerCase().trim()] = value;
+			}
+		} );
+		return sections;
+
+	}
 	function showmd( value ) { 
+		/*
 		// alert( value );
 		var conv = new showdown.Converter(  ), text = value, html = conv.makeHtml( text );
 		$( "#foo" ).html( html );
-		alert( html );
+		// alert( html );
+		*/
+		var sections = doSections( value );
+		console.log( sections );
+
+		$.each( sections, function( key, value ) { 
+			console.log( key + ": " + value );
+			var divId = "#" + key;
+			var sdown = new showdown.Converter(  ), text = value, html = sdown.makeHtml( text );
+			$( divId ).html( html );
+		});
+
 	}
 	var md = getUrlParameter( "md" ) || "leanCanvas";
 	var pathmd = md + ".md";
