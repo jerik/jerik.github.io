@@ -45,6 +45,9 @@
 	#revenu-stream { background: #0f0;  }
    
     </style> 
+  	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="mdCanvas.js"></script>
+  	<script src="https://cdn.rawgit.com/showdownjs/showdown/1.4.2/dist/showdown.min.js"></script>
   </head>
   <body>
     <p>LeanCanvas</p>
@@ -65,5 +68,23 @@
       <div id="cost-structure">Cost structure</div>
       <div id="revenu-stream">Revenue Stream</div>
     </div>
+    <div class="flex">
+      <div id="foo">foo</div>
+    </div>
+	
+	<script type="text/javascript" charset="utf-8">
+	function showmd( value ) { 
+		// alert( value );
+		var conv = new showdown.Converter(  ), text = "# hello, markdown", html = conv.makeHtml( text );
+		$( "#foo" ).html( html );
+		alert( html );
+	}
+	var md = getUrlParameter( "md" ) || "leanCanvas";
+	var pathmd = md + ".md";
+
+	$.get( pathmd, function( data ) {
+		showmd( data );
+	}, 'text');
+	</script>
   </body>
-</html>
+</html>	
