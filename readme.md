@@ -14,6 +14,9 @@ snippset and things I want to capture / document
 
 ## todos leanCanvas
 - !! make divs flexible, so that it can resize depeding on the content size. Ask on stackoverflow
+  - https://stackoverflow.com/questions/1709442/make-divs-height-expand-with-its-content
+  - https://stackoverflow.com/questions/450903/how-to-make-div-not-larger-than-its-contents
+  - https://stackoverflow.com/questions/7023654/make-div-width-adapt-automatically-to-contents-within-it
 - # Project, for the projekt title and integrate it in the leanCanvas.html
 - make help-per-topic, which shows some example question with an onmouseover
 - make leanCanvas and BusinessCanvas

@@ -1,43 +1,52 @@
+# Canvas
+Lean Canvas
+
 # Problem
-- das ist mein Problem 
-- und hier der zweite punkt
-
-# Solution
-- die Loesung ist sondso 
-- again again
-
-# Key-Metrics
-das macht man dann so
-
-# Unique-Value-Proposition
-* Teil a
-* teil B
-
-# Unfair-advantage
-- Du bist gemein
-- Er ist gemein 
-- Wir sind gemein
-
-# Channels
-- my channel
-- your channel
-- Everybody move your channel
-- my channel
-- your channel
-- Everybody move your channel
-- my channel
-- your channel
-- Everybody move your channel
+1. Top problem
+1. Top problem
+1. Top problem
 
 # Customer-segment
-- Early Adopters
-- Main Stream
+1. Target customer
+1. Target customer
+1. Target customer
+
+# Unique-Value-Proposition
+**Single**, _clear_, `compelling` message that states why you are different and worth buying
+
+# Solution
+- First top feature
+- Second top feature
+- Third top feature
+
+# Channels
+- Path to the customer
+- Social media
+- Point of sale
+- Social media
+- Point of sale
+- Social media
+- Point of sale
+- Social media
+- Point of sale
 
 # Cost-Structure
-- some sunk costs
-- Some this ans that
+- Customer aquisition costs
+- Distribution costs
+- Hosting
+- People, ...
 
 # Revenue-Stream
-- Money Money Money
-- big **money**
-- It's raining _money_
+- Revenue model 
+- Life time value
+- Revenue
+- Gross margin
+
+# Key-Metrics
+- Key activity to measure
+- Other key activity to measure
+- Another key activity to measure
+
+# Unfair-advantage
+- C'ant be easily...
+- ... copied and bought

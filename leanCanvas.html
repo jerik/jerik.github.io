@@ -50,7 +50,7 @@
   	<script src="https://cdn.rawgit.com/showdownjs/showdown/1.4.2/dist/showdown.min.js"></script>
   </head>
   <body>
-    <p>LeanCanvas</p>
+    <h1 id="mdc-canvas">LeanCanvas</h1>
     <div class="flex">
       <div id="mdc-problem">problem</div>
       <div>
@@ -70,10 +70,12 @@
     </div>
 	
 	<script type="text/javascript" charset="utf-8">
+
+	// generate sections for the canvas
 	function doSections( md ) { 
 		var result = md.split( "#" );
 		var sections = {  };
-		console.log( result );
+		// console.log( result );
 		$.each( result, function( key, value ) { 
 			if ( value != "" ) {  
 				//console.log( key + ": " + value );
@@ -83,30 +85,45 @@
 				//console.log( key + ":" +header[0] );
 
 				// add header to the section
-				sections['mdc-' + header[0].toLowerCase().trim()] = '###' + value;
+				sections[objKey( header[0] )] = '###' + value;
+
+				// get the name of the canvas or project name
+				if ( header[0].includes( "anvas" ) ) { 
+					sections[objKey( header[0] )] = header[1];
+				}
 			}
 		} );
 		return sections;
-
 	}
+
+	// generate object key
+	function objKey( name ) { 
+		return 'mdc-' + name.toLowerCase().trim();
+	}
+
+	// process the markdown content
 	function showmd( value ) { 
 		var sections = doSections( value );
-		console.log( sections );
+		// console.log( sections );
 
 		$.each( sections, function( key, value ) { 
 			console.log( key + ": " + value );
-			var divId = "#" + key;
+			var tagId = "#" + key;
+			
 			var sdown = new showdown.Converter(  ), text = value, html = sdown.makeHtml( text );
-			$( divId ).html( html );
+			$( tagId ).html( html );
 		});
-
 	}
+
+	// get url parameter
 	var md = getUrlParameter( "md" ) || "leanCanvas";
 	var pathmd = md + ".md";
 
+	// get markdown file and content
 	$.get( pathmd, function( data ) {
 		showmd( data );
 	}, 'text');
+
 	</script>
   </body>
 </html>	
