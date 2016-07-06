@@ -13,7 +13,10 @@ snippset and things I want to capture / document
 - optional inform about jekyll: https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/
 
 ## todos leanCanvas
-- read leanCanvas.md, with # Problem, # Solution etc as headings. # Project, for the projekt title and integrate it in the leanCanvas.html
-- make divs flexible, so that it can resize depeding on the content size
+- !! make divs flexible, so that it can resize depeding on the content size. Ask on stackoverflow
+- # Project, for the projekt title and integrate it in the leanCanvas.html
 - make help-per-topic, which shows some example question with an onmouseover
 - make leanCanvas and BusinessCanvas
+
+### done 
+- read leanCanvas.md, with # Problem, # Solution etc as headings. 
