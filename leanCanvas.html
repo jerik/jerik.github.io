@@ -34,15 +34,15 @@
         /* width: 200px; */
     }
 
-	#problem { background: #9ff;  }
-	#solution { background: #c9f; height: 200px;  }
-	#key-metrics { background: #c0c0c0; height: 200px;  }
-	#unique-value-proposition { background: #cc9;  }
-	#unfair-advantage { background: #c9f; height: 200px;  }
-	#channels { background: #c0c0c0; height: 200px;  }
-	#customer-segment { background: #9ff;  }
-	#cost-structure { background: #f60;  }
-	#revenu-stream { background: #0f0;  }
+	#mdc-problem { background: #9ff;  }
+	#mdc-solution { background: #c9f; height: 200px;  }
+	#mdc-key-metrics { background: #c0c0c0; height: 200px;  }
+	#mdc-unique-value-proposition { background: #cc9;  }
+	#mdc-unfair-advantage { background: #c9f; height: 200px;  }
+	#mdc-channels { background: #c0c0c0; height: 200px;  }
+	#mdc-customer-segment { background: #9ff;  }
+	#mdc-cost-structure { background: #f60;  }
+	#mdc-revenue-stream { background: #0f0;  }
    
     </style> 
   	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -52,24 +52,21 @@
   <body>
     <p>LeanCanvas</p>
     <div class="flex">
-      <div id="problem">problem</div>
+      <div id="mdc-problem">problem</div>
       <div>
-		  <div id="solution">solution</div>
-		  <div id="key-metrics">key metrics</div>
+		  <div id="mdc-solution">solution</div>
+		  <div id="mdc-key-metrics">key metrics</div>
 	  </div>
-      <div id="unique-value-proposition">unique-value-proposition</div>
+      <div id="mdc-unique-value-proposition">unique-value-proposition</div>
       <div>
-		  <div id="unfair-advantage">unfair advantage</div>
-		  <div id="channels">channels</div>
+		  <div id="mdc-unfair-advantage">unfair advantage</div>
+		  <div id="mdc-channels">channels</div>
 	  </div>
-	  <div id="customer-segment">key metrics</div>
+	  <div id="mdc-customer-segment">customer-segment</div>
     </div>
     <div class="flex">
-      <div id="cost-structure">Cost structure</div>
-      <div id="revenu-stream">Revenue Stream</div>
-    </div>
-    <div class="flex">
-      <div id="foo">foo</div>
+      <div id="mdc-cost-structure">cost-structure</div>
+      <div id="mdc-revenue-stream">revenue-stream</div>
     </div>
 	
 	<script type="text/javascript" charset="utf-8">
@@ -86,19 +83,13 @@
 				//console.log( key + ":" +header[0] );
 
 				// add header to the section
-				sections[header[0].toLowerCase().trim()] = value;
+				sections['mdc-' + header[0].toLowerCase().trim()] = '###' + value;
 			}
 		} );
 		return sections;
 
 	}
 	function showmd( value ) { 
-		/*
-		// alert( value );
-		var conv = new showdown.Converter(  ), text = value, html = conv.makeHtml( text );
-		$( "#foo" ).html( html );
-		// alert( html );
-		*/
 		var sections = doSections( value );
 		console.log( sections );
 
