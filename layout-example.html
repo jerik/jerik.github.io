@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <style type="text/css">
+/*<![CDATA[*/
+        /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes#Flex_item_considerations */
+
+    .flex {
+        /* basic styling */
+        width: 100%;
+        height: 400px;
+        border: 1px solid #555;
+        font: 14px Arial;
+
+        /* flexbox setup */
+        display: flex;
+        flex-direction: row;
+    }
+
+    .flex > div {
+        flex: 1 1 auto;
+        width: 30px; /* To make the transition work nicely. (Transitions to/from
+                        "width:auto" are buggy in Gecko and Webkit, at least.
+                        See http://bugzil.la/731886 for more info.) */
+        /* transition: width 0.7s ease-out; */
+    }
+
+    /* colors 
+    .flex > div:nth-child(1){ background: #009246; }
+    .flex > div:nth-child(2){ background: #F1F2F1; }
+    .flex > div:nth-child(3){ background: #CE2B37; }
+        */
+
+    .flex > div:hover {
+        /* width: 200px; */
+    }
+
+        #mdc-problem { background: #9ff;  }
+        #mdc-solution { background: #c9f; height: 200px;  }
+        #mdc-key-metrics { background: #c0c0c0; height: 200px;  }
+        #mdc-unique-value-proposition { background: #cc9;  }
+        #mdc-unfair-advantage { background: #c9f; height: 200px;  }
+        #mdc-channels { background: #c0c0c0; height: 200px;  }
+        #mdc-customer-segment { background: #9ff;  }
+        #mdc-cost-structure { background: #f60;  }
+        #mdc-revenue-stream { background: #0f0;  }
+   
+  /*]]>*/
+  </style>
+
+  <title></title>
+</head>
+
+<body>
+  <h1 id="mdc-canvas">Lean Canvas</h1>
+
+
+  <div class="flex">
+    <div id="mdc-problem">
+      <h3 id="problem">Problem</h3>
+      <ol>
+        <li>Top problem</li>
+        <li>Top problem</li>
+        <li>Top problem</li>
+      </ol>
+    </div>
+
+    <div>
+      <div id="mdc-solution">
+        <h3 id="solution">Solution</h3>
+        <ul>
+          <li>First top feature</li>
+          <li>Second top feature</li>
+          <li>Third top feature</li>
+        </ul>
+      </div>
+
+      <div id="mdc-key-metrics">
+        <h3 id="keymetrics">Key-Metrics</h3>
+        <ul>
+          <li>Key activity to measure</li>
+          <li>Other key activity to measure</li>
+          <li>Another key activity to measure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="mdc-unique-value-proposition">
+      <h3 id="uniquevalueproposition">Unique-Value-Proposition</h3>
+      <p><strong>Single</strong>, <em>clear</em>, <code>compelling</code> message that
+      states why you are different and worth buying</p>
+    </div>
+
+    <div>
+      <div id="mdc-unfair-advantage">
+        <h3 id="unfairadvantage">Unfair-advantage</h3>
+        <ul>
+          <li>C'ant be easily...</li>
+          <li>... copied and bought</li>
+        </ul>
+      </div>
+
+      <div id="mdc-channels">
+        <h3 id="channels">Channels</h3>
+        <ul>
+          <li>Path to the customer</li>
+          <li>Social media</li>
+          <li>Point of sale</li>
+          <li>Social media</li>
+          <li>Point of sale</li>
+          <li>Social media</li>
+          <li>Point of sale</li>
+          <li>Social media</li>
+          <li>Point of sale</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="mdc-customer-segment">
+      <h3 id="customersegment">Customer-segment</h3>
+
+      <ol>
+        <li>Target customer</li>
+        <li>Target customer</li>
+        <li>Target customer</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="flex">
+    <div id="mdc-cost-structure">
+      <h3 id="coststructure">Cost-Structure</h3>
+
+      <ul>
+        <li>Customer aquisition costs</li>
+        <li>Distribution costs</li>
+        <li>Hosting</li>
+        <li>People, ...</li>
+      </ul>
+    </div>
+
+    <div id="mdc-revenue-stream">
+      <h3 id="revenuestream">Revenue-Stream</h3>
+      <ul>
+        <li>Revenue model</li>
+        <li>Life time value</li>
+        <li>Revenue</li>
+        <li>Gross margin</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
+
+
