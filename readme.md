@@ -20,6 +20,7 @@ snippset and things I want to capture / document
 - # Project, for the projekt title and integrate it in the leanCanvas.html
 - make help-per-topic, which shows some example question with an onmouseover
 - make leanCanvas and BusinessCanvas
+- HTML 5 verwenden: header, footer, section, nav?
 
 ### done 
 - read leanCanvas.md, with # Problem, # Solution etc as headings. 
