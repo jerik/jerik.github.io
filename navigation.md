@@ -1,4 +1,2 @@
-# Master P 
+# Jeriks - this and that
 
-[Home]( index.md )
-[About]( about.md )
