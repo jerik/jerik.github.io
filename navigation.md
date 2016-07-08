@@ -1,2 +1,2 @@
-# Jeriks - this and that
+# Jeriks &middot; this and that
 
