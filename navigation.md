@@ -1,5 +1,10 @@
 # Jeriks &middot; this and that
 
-[foo]( foo.md )
-[bar]( bar.md )
 
+[mdCanvas]( )
+
+  - [mdCanvas]( mdCanvas/index.md )
+  - - - -
+  - # Examples
+  - [default]( mdCanvas/mdCanvas.html )
+  - [project.md]( mdCanvas/mdCanvas.html?md=project )
