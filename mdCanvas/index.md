@@ -5,7 +5,7 @@ Create a Lean Canvas out of a markdown list
 Examples are available: 
 
 - [leanCanvas]( mdCanvas.html ) with [startup file: mdCanvas.md]( https://raw.githubusercontent.com/jerik/mdCanvas/master/mdCanvas.md  )
-- [leanCanvas]( mdCanvas.html?md=project ) with [project.md]( project.md ) ( Oops, will be rendered as markdown list. Is the behaviour of this wiki )
+- [leanCanvas]( mdCanvas.html?md=project ) with [project.md]( project.md ) ( Oops, will be rendered as html. Is owed by the behaviour of this wiki. )
 
 ## Getting started
 1. Clone or download this github repository [jerik/mdCanvas]( https://github.com/jerik/mdCanvas )
