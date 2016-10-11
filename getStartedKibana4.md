@@ -1,5 +1,5 @@
-# Get started with kibana4
-Short tutorial how to get started with kibana on OSX for rookies (like me at this topic)
+# Getting started with kibana4
+Short tutorial how to get started with kibana on OSX for rookies (like me at this topic). This does not cover logstash. Logstash is covered on [Get started with Logstash 2.4]( getStartedLogstash2.4.md )
 
 # Install (on *nix flavours)
 - elasitcsearch 
