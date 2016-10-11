@@ -16,7 +16,7 @@ Data must be imported to elasticsearch. On Kibana you must point to the index (i
 elasticsearch works great with json files, but to import you  have to tweak the json that it is conform to [elasticsearch's bulk format](https://www.elastic.co/guide/en/elasticsearch/guide/current/bulk.html). 
 
 ## Prepare import data
-There are two ways: 
+There are 2 ways: 
 
 1. if you import your data with curl and specify the index (=database) and type (=collection) on the request, then you can use en empty action-line
 2. if you import your data with curl and do not specify index and type, you have to specify ist on the action-line
