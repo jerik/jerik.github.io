@@ -118,9 +118,108 @@ the sample data with:
 Now the logstash message was stored in `C:\Users\foo\logstash-2.4.0\logstash-tutorial-output.log`. When I opened
 the file it looked like: 
 
-	{"message":"83.149.9.216 - - [04/Jan/2015:05:13:42 +0000] \"GET /presentations/logstash-monitorama-2013/images/kibana-search.png HTTP/1.1\" 200 203023 \"http://semicomplete.com/presentations/logstash-monitorama-2013/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.77 Safari/537.36\"","@version":"1","@timestamp":"2016-10-11T09:12:37.907Z","path":"C:\\Users\\e13pc96\\Workspace\\Reporting\\Stack5.0\\logstash-2.4.0\\logstash-tutorial-dataset","host":"FOO1128"}
-	{"message":"83.149.9.216 - - [04/Jan/2015:05:13:42 +0000] \"GET /presentations/logstash-monitorama-2013/images/kibana-dashboard3.png HTTP/1.1\" 200 171717 \"http://semicomplete.com/presentations/logstash-monitorama-2013/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.77 Safari/537.36\"","@version":"1","@timestamp":"2016-10-11T09:12:37.936Z","path":"C:\\Users\\e13pc96\\Workspace\\Reporting\\Stack5.0\\logstash-2.4.0\\logstash-tutorial-dataset","host":"FOO1128"}
+    {"message":"83.149.9.216 - - [04/Jan/2015:05:13:42 +0000] \"GET /presentations/logstash-monitorama-2013/images/kibana-search.png HTTP/1.1\" 200 203023 \"http://semicomplete.com/presentations/logstash-monitorama-2013/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.77 Safari/537.36\"","@version":"1","@timestamp":"2016-10-11T09:12:37.907Z","path":"C:\\Users\\foo\\logstash-2.4.0\\logstash-tutorial-dataset","host":"FOO1128"}
 
+## Let's filter
+Following the tutorial I tried the `grok` and `geoip` filter in the pipe file. In the first step I tried `grok`
+which enhance the log line with information about: **clientip, ident, auth, timestamp, verb, request, httpversion,
+response, bytes, referrer** and **agent**. 
+
+This was a little bit confusing as I understood that the log information would be transformed only to these
+information bits and not that the log line was enhance by this information. Anyway the filter works somehow. 
+
+Heres the updated **pipe.conf** with the `grok` filter: 
+
+	input {
+		file {
+			# must be an absulut path
+			path => "C:\Users\foo\logstash-2.4.0\logstash-tutorial-dataset"
+			start_position => beginning 
+			ignore_older => 0 
+			sincedb_path => "C:\Users\foo\logstash-2.4.0\.sincedb_path-logstash-tutorial-dataset"
+		}
+	}
+	filter {
+		grok {
+			match => { "message" => "%{COMBINEDAPACHELOG}"}
+		}
+	}
+	output {
+		stdout {  }
+		file { 
+			path => "C:\Users\foo\logstash-2.4.0\logstash-tutorial-output.log"
+		}
+	}
+
+Which generated this output:
+
+    {"message":"83.149.9.216 - - [04/Jan/2015:05:13:42 +0000] \"GET /presentations/logstash-monitorama-2013/images/kibana-search.png HTTP/1.1\" 200 203023 \"http://semicomplete.com/presentations/logstash-monitorama-2013/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.77 Safari/537.36\"","@version":"1","@timestamp":"2016-10-13T15:35:59.611Z","path":"C:\\Users\\foo\\logstash-2.4.0\\logstash-tutorial-dataset","host":"FOO1128","clientip":"83.149.9.216","ident":"-","auth":"-","timestamp":"04/Jan/2015:05:13:42 +0000","verb":"GET","request":"/presentations/logstash-monitorama-2013/images/kibana-search.png","httpversion":"1.1","response":"200","bytes":"203023","referrer":"\"http://semicomplete.com/presentations/logstash-monitorama-2013/\"","agent":"\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.77 Safari/537.36\""}
+
+The same goes for the `geoip` filter, it enhanced the log lines with the information about: **geoip: { ip, country_code2, country_code3, country_name, continent_code, region_name, city_name, latitude, longitude, timezone, real_region_name** and **location }**.
+
+Heres the updated **pipe.conf** with the `geoip` filter: 
+
+	input {
+		file {
+			# must be an absulut path
+			path => "C:\Users\foo\logstash-2.4.0\logstash-tutorial-dataset"
+			start_position => beginning 
+			ignore_older => 0 
+			sincedb_path => "C:\Users\foo\logstash-2.4.0\.sincedb_path-logstash-tutorial-dataset"
+		}
+	}
+	filter {
+		grok {
+			match => { "message" => "%{COMBINEDAPACHELOG}"}
+		}
+		geoip {
+			source => "clientip"
+		}
+	}
+	output {
+		stdout {  }
+		file { 
+			path => "C:\Users\foo\logstash-2.4.0\logstash-tutorial-output.log"
+		}
+	}
+
+Which resulted in the following logline:
+
+    {"message":"83.149.9.216 - - [04/Jan/2015:05:13:42 +0000] \"GET /presentations/logstash-monitorama-2013/images/kibana-search.png HTTP/1.1\" 200 203023 \"http://semicomplete.com/presentations/logstash-monitorama-2013/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.77 Safari/537.36\"","@version":"1","@timestamp":"2016-10-13T15:41:48.229Z","path":"C:\\Users\\foo\\logstash-2.4.0\\logstash-tutorial-dataset","host":"FOO1128","clientip":"83.149.9.216","ident":"-","auth":"-","timestamp":"04/Jan/2015:05:13:42 +0000","verb":"GET","request":"/presentations/logstash-monitorama-2013/images/kibana-search.png","httpversion":"1.1","response":"200","bytes":"203023","referrer":"\"http://semicomplete.com/presentations/logstash-monitorama-2013/\"","agent":"\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.77 Safari/537.36\"","geoip":{"ip":"83.149.9.216","country_code2":"RU","country_code3":"RUS","country_name":"Russian Federation","continent_code":"EU","region_name":"48","city_name":"Moscow","latitude":55.75219999999999,"longitude":37.6156,"timezone":"Europe/Moscow","real_region_name":"Moscow City","location":[37.6156,55.75219999999999]}}
+
+## Change output and store in elasticsearch
+So the filters works somehow. The next step was storing the data in elasticsearch. Obvious that you have to
+download, install and run elasticsearch for that. How is described in the [elasticsearch 2.4 documentation][5]. 
+
+Done that I had an elasticsearch instance running on http://localhost:9200.
+
+Following the logstash tutorial I replaced the output section and ended up in this pipe configuration: 
+
+Which a short configtest: `bin\logstash.bat -f pipe.conf --configtest` confirmed with **Configuration OK**.
+
+And finally getting **Butter bei die Fisch** ( German saying, should be in english something near to *get down to brass tacks* ). Be sure to removed the `.sincedb` file before!
+
+Again I run the logstash command: 
+
+	bin\logstash.bat -f pipe.conf
+
+And could see that something happend in the elasticsearch shell. To figure out in which index elasticsearch stored
+the output I had a quick look in my browser under: 
+
+	http://localhost:9200/_cat/indices?v
+
+Which lists all indices. There I could figure out that it should be `logstash-2016.10.13`. 
+
+	health status index               pri rep docs.count docs.deleted store.size pri.store.size 
+	yellow open   l4                    5   1       1000            0    461.5kb        461.5kb 
+	yellow open   .kibana               1   1          1            0      3.1kb          3.1kb 
+	yellow open   logstash-2016.10.13   5   1        100            0    241.8kb        241.8kb
+
+Armed with this information I could check now if the import worked, by calling the following URL in my browser: 
+
+	http://localhost:9200/logstash-2016.10.13/_search?pretty&q=response=200
+
+As response I got a lot of Json with the data of the sample data set
 
 ----
 
@@ -135,4 +234,4 @@ Created: 2016-10-11
 [2]: https://git-for-windows.github.io/
 [3]: https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz
 [4]: https://www.elastic.co/guide/en/logstash/current/plugins-inputs-file.html
-
+[5]: https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
