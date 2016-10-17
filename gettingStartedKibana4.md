@@ -1,9 +1,9 @@
-# Getting started with kibana4
-Short tutorial how to get started with kibana on OSX for rookies (like me at this topic). This does not cover logstash. Logstash is covered on [Get started with Logstash 2.4]( getStartedLogstash2.4.md )
+# Getting started with Kibana 4
+Tutorial how to get started with Kibana 4 on OSX for rookies (like me at this topic). This does not cover Logstash. Logstash is covered on [Getting started with Logstash 2.4]( gettingStartedLogstash2.4.md )
 
 # Install (on *nix flavours)
-- elasitcsearch 
-- kibana4
+- Elasitcsearch 
+- kibana 4
 
 # Fireup 
 on the shell start `bin/elasticsearch` and `bin/kibana`
@@ -21,7 +21,7 @@ There are 2 ways:
 1. if you import your data with curl and specify the index (=database) and type (=collection) on the request, then you can use en empty action-line
 2. if you import your data with curl and do not specify index and type, you have to specify ist on the action-line
 
-## Example for perparing way 1: 
+## Preparing the data: 
 
 recipies.json (bulk format, mind the linebreak: `\n` at the end of each line):
 

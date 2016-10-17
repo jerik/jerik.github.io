@@ -1,16 +1,14 @@
 # Getting started with Logstash 2.4
-Short tutorial how I got Logstash 2.4 on Windows 7 up and running based on the [Elastic tutorial - Getting Stated with Logstash][1].
+A tutorial how I got Logstash 2.4 on Windows 7 up and running based on the [Elastic tutorial - Getting Stated with Logstash][1].
 
-## Install (on *nix flavours)
-@todo 
-
-## Fireup 
-@todo 
+## Download 
+- Download [logstash 2.4.0][6]. I used the zip version and unpacked it to `C:\Users\foo\logstash-2.4.0`
+- Lateron in this tutorial you need [elasticsearch 2.4.1][7] where the logstash output will be stored.
 
 ## Smoke test
 The first step was to check if logstash was working. This was quite easy, as stated in the tutorial: 
 
-    cd logstash-2.4.0
+    cd C:\Users\foo\logstash-2.4.0
 	bin/logstash -e 'input { stdin {  } } output { stdout {  } }'
 
 This did not work in the first instance. My fault was, that I tryed to start logstash in a [git bash][2]. And there are some things missing, so I got an error message like 
@@ -31,7 +29,7 @@ with the command:
 
 	bin\logstash.bat -f pipe.conf
 
-Heres the content of the file **pipe.conf**:
+Here is the content of the file **pipe.conf**:
 	
 	# The # character at the beginning of a line indicates a comment. Use
 	# comments to describe your configuration.
@@ -45,12 +43,12 @@ Heres the content of the file **pipe.conf**:
 This worked as expexted. 
 
 ## Parse real log data...
-Here I downloaded the sample data set: [logstash-tutorial-dataset][3] and extracted it to my logstash 2.4 folder.
+I downloaded the sample data set: [logstash-tutorial-dataset][3] and extracted it to my logstash 2.4 folder.
 The pipe file must be configured to read the sample data. This was done with the **file input** configuration. Important to know: 
 
  - `path` information must be an absolute path
 
-With the following **pipe.conf** content I read the sample data and print it on the MS-DOS console screen
+With the following **pipe.conf** the sample data is read and print out on the MS-DOS console screen
 
 	input {
 		# stdin {  }
@@ -75,13 +73,13 @@ As result I got the log messages printed to the MS-DOS console:
 	 2016-10-11T09:12:37.943Z FOO1128 24.236.252.67 - - [04/Jan/2015:05:14:10 +0000 ] "GET /favicon.ico HTTP/1.1" 200 3638 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_ 64; rv:26.0) Gecko/20100101 Firefox/26.0"
 	 ...
 
-That was fine. And I wanted to rerun the example. But this did not work. After some time I figured out, this has
-to do with `.sincedb` file.
+That was fine. Rerunning the command did not work. After some time I figured out, this has
+to do with `.sincedb*` file. With removing the `.sincedb*` file I was able to rerun the example with the desired output.
 
 ### Excursus .sincedb
 The `.sincedb*` file "keeps tracks of the current position in each file" [\[cite-1\]][4]. So if you rerun the
 example there will be no output. You have to remove the `.sincedb*` file, before the rerun. By default the file is
-store in your home directory. But you can specify the location in the pipe file in the file input section
+stored in your home directory. But you can specify the location in the pipe file in the file input section
 
 	# It must be an absolute file path
     sincedb_path => "C:\Users\foo\logstash-2.4.0\.sincedb_path-logstash-tutorial-dataset"
@@ -195,6 +193,30 @@ Done that I had an elasticsearch instance running on http://localhost:9200.
 
 Following the logstash tutorial I replaced the output section and ended up in this pipe configuration: 
 
+	input {
+		file {
+			# must be an absulut path
+			path => "C:\Users\foo\logstash-2.4.0\logstash-tutorial-dataset"
+			start_position => beginning 
+			ignore_older => 0 
+			sincedb_path => "C:\Users\foo\logstash-2.4.0\.sincedb_path-logstash-tutorial-dataset"
+		}
+	}
+	filter {
+		grok {
+			match => { "message" => "%{COMBINEDAPACHELOG}"}
+		}
+		geoip {
+			source => "clientip"
+		}
+	}
+	output {
+		stdout {  }
+		elasticsearch {
+			hosts => [ "localhost:9200" ]
+		}
+	}
+
 Which a short configtest: `bin\logstash.bat -f pipe.conf --configtest` confirmed with **Configuration OK**.
 
 And finally getting **Butter bei die Fisch** ( German saying, should be in english something near to *get down to brass tacks* ). Be sure to removed the `.sincedb` file before!
@@ -208,26 +230,24 @@ the output I had a quick look in my browser under:
 
 	http://localhost:9200/_cat/indices?v
 
-Which lists all indices. There I could figure out that it should be `logstash-2016.10.13`. 
+Which lists all indices. There I could figure out that it should be `logstash-2016.10.15`. 
 
 	health status index               pri rep docs.count docs.deleted store.size pri.store.size 
 	yellow open   l4                    5   1       1000            0    461.5kb        461.5kb 
 	yellow open   .kibana               1   1          1            0      3.1kb          3.1kb 
-	yellow open   logstash-2016.10.13   5   1        100            0    241.8kb        241.8kb
+	yellow open   logstash-2016.10.15   5   1        100            0    241.8kb        241.8kb
 
 Armed with this information I could check now if the import worked, by calling the following URL in my browser: 
 
-	http://localhost:9200/logstash-2016.10.13/_search?pretty&q=response=200
+	http://localhost:9200/logstash-2016.10.15/_search?pretty&q=response=200
 
-As response I got a lot of Json with the data of the sample data set
+As response I got a lot of Json with the data of the sample data set.
 
 ----
 
 cite-1: https://www.elastic.co/guide/en/logstash/current/plugins-inputs-file.html
 
-Created: 2016-10-11
-
-
+Created: 2016-10-15
 
 
 [1]: https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html
@@ -235,3 +255,5 @@ Created: 2016-10-11
 [3]: https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz
 [4]: https://www.elastic.co/guide/en/logstash/current/plugins-inputs-file.html
 [5]: https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+[6]: https://www.elastic.co/downloads/logstash
+[7]: https://www.elastic.co/downloads/elasticsearch
