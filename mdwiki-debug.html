@@ -4245,7 +4245,24 @@ function googlemapsReady() {
 
 }(jQuery));
 
+
+{ // scope search
+	function foobar(  ) { 
+		console.log( "foobar" );
+	}
+
+	// @todo put here everthing with as much closures as needed
+}
+
+foobar(  );
+
+
 // jerik search
+
+function showResult( matches ) { 
+		console.log( "|||||| log matches: " + matches );
+}
+
 
 function searchmd(  ) { 
 	console.log( "fiasdfasfd" );
@@ -4257,7 +4274,7 @@ function searchmd(  ) {
         navMD = data;
         // console.log( navMD );
 		files = findfiles( navMD );
-		findInMD( files, 'dolor' );
+		findInMD( files, 'bana' );
     }).fail(function() {
 		console.log( "faild to retrieve navigation.md" );
     });
@@ -4281,9 +4298,16 @@ function getFile( file ) {
 }
 
 function findInMD( files, pattern  ) { 
-	var re = '/' + pattern + '/g';
+
+	var re = new RegExp(pattern,"g");
 	console.log( 'search for: ' + re );
-	var matches = [];
+	var smatches = [];
+
+	// find pattern in textfile ( closure )
+	function heureka( textfile, filename ) { 
+		smatches.push( { 'id': filename, 'found': textfile.match( re ) } );
+	}
+
 	files.forEach( function( file ) {  
 		// @todo needs to be refactored as function, see getFile(  )
 		console.log( 'Digging into: ' + file );
@@ -4292,21 +4316,15 @@ function findInMD( files, pattern  ) {
 			dataType: 'text'
 		};
 		$.ajax(ajaxReq).done(function(data) {
-			fileMD = data;
-			// @todo have to use a callback to get the re( gularExpression ) to work
-			// matches.push( { 'id': file, 'found': fileMD.match( re ) } );
-			matches.push( { 'id': file, 'found': fileMD.match( /dolor/g ) } );
-			//console.log( fileMD );
+			heureka( data, file );
 		}).fail(function() {
 			console.log( "faild to retrieve navigation.md" );
 		});
-		
 	});
-	console.log( matches );
-
-	
+	console.log( smatches );
 }
 
+// Get files listed in navigation.md
 function findfiles( navMD ) { 
 	// http://stackoverflow.com/a/17779833/1933185
 	var re = /\(([^)]+)\)/g;
@@ -4318,6 +4336,7 @@ function findfiles( navMD ) {
 	//return found;
 }
 
+// tidy up matches, so that they look nice
 function getMD( files ) { 
 	var newFiles = [];
 	files.forEach( function( value, key ) { 
