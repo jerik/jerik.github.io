@@ -2783,6 +2783,20 @@ if (typeof exports === 'object') {
         navbar +=   '<div class="collapse navbar-collapse navbar-ex1-collapse">';
         navbar +=     '<ul class="nav navbar-nav" />';
         navbar +=     '<ul class="nav navbar-nav navbar-right" />';
+
+		// jerik 
+		navbar +=     '<div class="col-sm-3 col-md-3 pull-right">';
+		navbar +=   		'<form class="navbar-form" role="search" id="searchform">';
+		navbar +=   			'<div class="input-group">';
+		navbar +=   				'<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">';
+		navbar +=   				'<div class="input-group-btn">';
+		navbar +=   					'<button class="btn btn-default" type="submit" id="subsearch" onclick="doSearch()"><i class="glyphicon glyphicon-search"></i></button>';
+		navbar +=   				'</div>';
+		navbar +=   			'</div>';
+		navbar +=   		'</form>';
+		navbar +=   	'</div>';
+		// end jerik
+
         navbar +=   '</div>';
         navbar += '</div>';
         var $navbar = $(navbar);
@@ -4263,8 +4277,21 @@ function showResult( matches ) {
 		console.log( "|||||| log matches: " + matches );
 }
 
+// @todo try to prevent submitting, as the page will be reloaded. Does not work
+$( "#searchform" ).submit( function( event ) { 
+		alert( "submitting" );
+		event.preventDefault(  );
+})
 
-function searchmd(  ) { 
+// http://stackoverflow.com/questions/1947263/using-an-html-button-to-call-a-javascript-function
+// $("#subsearch").bind('click', function () { alert('hello!'); };)
+function doSearch(  ) { 
+	//searchterm = $( "#srch-term" ).val(  );
+	//searchmd( searchterm );
+}
+
+//function searchmd( searchterm ) { 
+function searchmd( ) { 
 	console.log( "fiasdfasfd" );
     var ajaxReq = {
         url: 'navigation.md',
@@ -4299,6 +4326,8 @@ function getFile( file ) {
 
 function findInMD( files, pattern  ) { 
 
+	// get the input of the search field
+	// console.log( "############## searchterm: " + searchterm );
 	var re = new RegExp(pattern,"g");
 	console.log( 'search for: ' + re );
 	var smatches = [];
