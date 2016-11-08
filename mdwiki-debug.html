@@ -2786,11 +2786,11 @@ if (typeof exports === 'object') {
 
 		// jerik 
 		navbar +=     '<div class="col-sm-3 col-md-3 pull-right">';
-		navbar +=   		'<form class="navbar-form" role="search" id="searchform">';
+		navbar +=   		'<form class="navbar-form" role="search" id="searchform" onsubmit="return doSearch()">';
 		navbar +=   			'<div class="input-group">';
 		navbar +=   				'<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">';
 		navbar +=   				'<div class="input-group-btn">';
-		navbar +=   					'<button class="btn btn-default" type="submit" id="subsearch" onclick="doSearch()"><i class="glyphicon glyphicon-search"></i></button>';
+		navbar +=   					'<button class="btn btn-default" type="submit" id="subsearch" ><i class="glyphicon glyphicon-search"></i></button>';
 		navbar +=   				'</div>';
 		navbar +=   			'</div>';
 		navbar +=   		'</form>';
@@ -4268,7 +4268,7 @@ function googlemapsReady() {
 	// @todo put here everthing with as much closures as needed
 }
 
-foobar(  );
+// foobar(  );
 
 
 // jerik search
@@ -4278,21 +4278,23 @@ function showResult( matches ) {
 }
 
 // @todo try to prevent submitting, as the page will be reloaded. Does not work
+/*
 $( "#searchform" ).submit( function( event ) { 
 		alert( "submitting" );
 		event.preventDefault(  );
 })
+*/
 
-// http://stackoverflow.com/questions/1947263/using-an-html-button-to-call-a-javascript-function
-// $("#subsearch").bind('click', function () { alert('hello!'); };)
+// http://stackoverflow.com/questions/8664486/javascript-code-to-stop-form-submission
 function doSearch(  ) { 
-	//searchterm = $( "#srch-term" ).val(  );
-	//searchmd( searchterm );
+	searchterm = $( "#srch-term" ).val(  );
+	//console.log( searchterm );
+	searchmd( searchterm );
+	return false;
 }
 
-//function searchmd( searchterm ) { 
-function searchmd( ) { 
-	console.log( "fiasdfasfd" );
+function searchmd( searchterm ) { 
+//function searchmd( ) { 
     var ajaxReq = {
         url: 'navigation.md',
         dataType: 'text'
@@ -4301,11 +4303,12 @@ function searchmd( ) {
         navMD = data;
         // console.log( navMD );
 		files = findfiles( navMD );
-		findInMD( files, 'bana' );
+		//findInMD( files, 'bana' );
+		findInMD( files, searchterm );
     }).fail(function() {
 		console.log( "faild to retrieve navigation.md" );
     });
-	console.log( "finish function" );
+	//console.log( "finish function" );
 }
 
 // @todo does not work, need a callback to get fileMD !!!
@@ -4377,7 +4380,7 @@ function getMD( files ) {
 	return newFiles;
 }
 
-searchmd(  );
+//searchmd(  );
 </script>
 <!-- END dist/MDwiki.js -->
 <script type="text/javascript">$.md.logThreshold = $.md.loglevel.DEBUG;</script>
