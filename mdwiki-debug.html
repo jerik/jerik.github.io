@@ -1354,6 +1354,10 @@ if (typeof exports === 'object') {
     // the in-page anchor that is specified after the !
     $.md.inPageAnchor = '';
 
+	// jerik
+	// Search result if needed
+	$.md.searchresult = '';
+
 
     $.md.loglevel = {
         TRACE: 10,
@@ -1557,22 +1561,28 @@ if (typeof exports === 'object') {
     function registerFetchMarkdown() {
 
         var md = '';
+		md = "# hallo heading\ntest normaler text";
 
-        $.md.stage('init').subscribe(function(done) {
-            var ajaxReq = {
-                url: $.md.mainHref,
-                dataType: 'text'
-            };
-            $.ajax(ajaxReq).done(function(data) {
-                // TODO do this elsewhere
-                md = data;
-                done();
-            }).fail(function() {
-                var log = $.md.getLogger();
-                log.fatal('Could not get ' + $.md.mainHref);
-                done();
-            });
-        });
+		// jerik only get md files if no $.md.searchresult is set
+		if ( $.md.searchresult == '' ) {  
+			$.md.stage('init').subscribe(function(done) {
+				var ajaxReq = {
+					url: $.md.mainHref,
+					dataType: 'text'
+				};
+				$.ajax(ajaxReq).done(function(data) {
+					// TODO do this elsewhere
+					md = data;
+					done();
+				}).fail(function() {
+					var log = $.md.getLogger();
+					log.fatal('Could not get ' + $.md.mainHref);
+					done();
+				});
+			});
+		} else { 
+			md = $.md.searchresult;
+		}
 
         // find baseUrl
         $.md.stage('transform').subscribe(function(done) {
@@ -4277,13 +4287,7 @@ function showResult( matches ) {
 		console.log( "|||||| log matches: " + matches );
 }
 
-// @todo try to prevent submitting, as the page will be reloaded. Does not work
-/*
-$( "#searchform" ).submit( function( event ) { 
-		alert( "submitting" );
-		event.preventDefault(  );
-})
-*/
+// @todo need to do a modul which will be registered and used by the PUBLIC API
 
 // http://stackoverflow.com/questions/8664486/javascript-code-to-stop-form-submission
 function doSearch(  ) { 
@@ -4305,6 +4309,9 @@ function searchmd( searchterm ) {
 		files = findfiles( navMD );
 		//findInMD( files, 'bana' );
 		findInMD( files, searchterm );
+		$.md.searchresult = "# Searchresult for: \ntest ist";
+		//console.log( $.md.searchresult );
+		loadContent( "foobar" );
     }).fail(function() {
 		console.log( "faild to retrieve navigation.md" );
     });
@@ -4342,7 +4349,7 @@ function findInMD( files, pattern  ) {
 
 	files.forEach( function( file ) {  
 		// @todo needs to be refactored as function, see getFile(  )
-		console.log( 'Digging into: ' + file );
+		//console.log( 'Digging into: ' + file );
 		var ajaxReq = {
 			url: file,
 			dataType: 'text'
@@ -4363,7 +4370,7 @@ function findfiles( navMD ) {
 	//var matches = re.exec(navMD);
 	// console.log( matches );
 	var found = navMD.match( re );
-	console.log( found );
+	//console.log( found );
 	return getMD( found );
 	//return found;
 }
@@ -4374,9 +4381,9 @@ function getMD( files ) {
 	files.forEach( function( value, key ) { 
 		// remove ( , ) , space
 		newFiles.push( value.replace( '(', '' ).replace( ')', '' ).replace( / /g, '' ) );
-		console.log( key + '> ' + value );
+		//console.log( key + '> ' + value );
 	} )
-	console.log( newFiles );
+	//console.log( newFiles );
 	return newFiles;
 }
 
