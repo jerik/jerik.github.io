@@ -1357,6 +1357,7 @@ if (typeof exports === 'object') {
 	// jerik
 	// Search result if needed
 	$.md.searchresult = '';
+	//$.md.searchresult = '# Test Search Result\nI am here.';
 
 
     $.md.loglevel = {
@@ -1561,28 +1562,25 @@ if (typeof exports === 'object') {
     function registerFetchMarkdown() {
 
         var md = '';
-		md = "# hallo heading\ntest normaler text";
 
-		// jerik only get md files if no $.md.searchresult is set
-		if ( $.md.searchresult == '' ) {  
-			$.md.stage('init').subscribe(function(done) {
-				var ajaxReq = {
-					url: $.md.mainHref,
-					dataType: 'text'
-				};
-				$.ajax(ajaxReq).done(function(data) {
-					// TODO do this elsewhere
-					md = data;
-					done();
-				}).fail(function() {
-					var log = $.md.getLogger();
-					log.fatal('Could not get ' + $.md.mainHref);
-					done();
-				});
+		$.md.stage('init').subscribe(function(done) {
+			var ajaxReq = {
+				url: $.md.mainHref,
+				dataType: 'text'
+			};
+			$.ajax(ajaxReq).done(function(data) {
+				// TODO do this elsewhere
+				md = data;
+				// jerik here needs the markdown content to be 
+				//md = "# hallo heading\ntest normaler text";
+				md = $.md.searchresult || data;
+				done();
+			}).fail(function() {
+				var log = $.md.getLogger();
+				log.fatal('Could not get ' + $.md.mainHref);
+				done();
 			});
-		} else { 
-			md = $.md.searchresult;
-		}
+		});
 
         // find baseUrl
         $.md.stage('transform').subscribe(function(done) {
@@ -2007,6 +2005,16 @@ if (typeof exports === 'object') {
 
         loadContent($.md.mainHref);
     });
+
+	// Make PUBLIC FUNCTION to use search
+	// jerik
+	// does not work as I have no namespace to call on... 
+	// @todo I have to integrate a listener on submitting the form and then do something. e.g. with bind(  )
+	return { 
+		search: function(  ) {  
+			console.log( "!!! inside the core" );
+		}
+	}
 }(jQuery));
 
 (function($) {
@@ -4269,16 +4277,38 @@ function googlemapsReady() {
 
 }(jQuery));
 
+// jerik 
+// http://stackoverflow.com/a/2937342/1933185
+// http://www.queness.com/post/112/a-really-simple-jquery-plugin-tutorial
+// http://stackoverflow.com/a/2421949/1933185
+var isnow = (function($) {
 
-{ // scope search
-	function foobar(  ) { 
-		console.log( "foobar" );
-	}
+	function nowbar( ) { 
+	var vi=$.md.config;
+		console.log( "function nowbar is called: " + vi );
+		console.log( arguments.callee );
+ 	}
 
-	// @todo put here everthing with as much closures as needed
-}
+	// not sure how this works
+    var nowbarGimmick = {
+        name: 'nowbar',
+        version: $.md.version,
+        once: function() {
+            $.md.linkGimmick(this, 'nowbar', nowbar);
+            $.md.registerScript(this, '', {
+                license: 'LGPL',
+                loadstage: 'skel_ready',
+                finishstage: 'bootstrap'
+            });
+        }
+    };
+    $.md.registerGimmick(nowbarGimmick);
 
-// foobar(  );
+	nowbar(  );
+}(jQuery));
+
+
+isnow; // call the function, I think as it is eingehuellt in (  )
 
 
 // jerik search
@@ -4290,10 +4320,12 @@ function showResult( matches ) {
 // @todo need to do a modul which will be registered and used by the PUBLIC API
 
 // http://stackoverflow.com/questions/8664486/javascript-code-to-stop-form-submission
+// This is executed when the form is submited
 function doSearch(  ) { 
 	searchterm = $( "#srch-term" ).val(  );
 	//console.log( searchterm );
 	searchmd( searchterm );
+	// must be false, otherwise the form is submitted which will lead to an reload. And then everything is gone
 	return false;
 }
 
@@ -4310,15 +4342,14 @@ function searchmd( searchterm ) {
 		//findInMD( files, 'bana' );
 		findInMD( files, searchterm );
 		$.md.searchresult = "# Searchresult for: \ntest ist";
-		//console.log( $.md.searchresult );
-		loadContent( "foobar" );
+		console.log( $.md.searchresult );
     }).fail(function() {
 		console.log( "faild to retrieve navigation.md" );
     });
 	//console.log( "finish function" );
 }
 
-// @todo does not work, need a callback to get fileMD !!!
+/* @todo does not work, need a callback to get fileMD !!!
 function getFile( file ) { 
 	console.log( "getFile proc....." );
     var ajaxReq = {
@@ -4333,6 +4364,7 @@ function getFile( file ) {
 		console.log( 'faild to retrieve' + file );
     });
 }
+*/
 
 function findInMD( files, pattern  ) { 
 
