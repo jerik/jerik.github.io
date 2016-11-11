@@ -2003,18 +2003,27 @@ if (typeof exports === 'object') {
             window.location.reload(false);
         });
 
+
         loadContent($.md.mainHref);
+
+		console.log( ':: Before binding' );
+		$( '#srch-term' ).change( function(  ) { 
+			alert( "change" );
+			console.log( '### This is a binding on submit' );
+		} );
+		/*
+		$( '#subsearch' ).on( 'click', function(  ) {  
+				alert( "### This is binding on clicking the button" );
+		} );
+		*/
+		console.log( ':: After binding' );
+		
     });
 
 	// Make PUBLIC FUNCTION to use search
 	// jerik
 	// does not work as I have no namespace to call on... 
 	// @todo I have to integrate a listener on submitting the form and then do something. e.g. with bind(  )
-	return { 
-		search: function(  ) {  
-			console.log( "!!! inside the core" );
-		}
-	}
 }(jQuery));
 
 (function($) {
@@ -2804,7 +2813,7 @@ if (typeof exports === 'object') {
 
 		// jerik 
 		navbar +=     '<div class="col-sm-3 col-md-3 pull-right">';
-		navbar +=   		'<form class="navbar-form" role="search" id="searchform" onsubmit="return doSearch()">';
+		navbar +=   		'<form class="navbar-form" role="search" id="searchform" onsubmit="return false">'; // onsubmit="return doSearch()"
 		navbar +=   			'<div class="input-group">';
 		navbar +=   				'<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">';
 		navbar +=   				'<div class="input-group-btn">';
