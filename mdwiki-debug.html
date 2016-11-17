@@ -2003,22 +2003,147 @@ if (typeof exports === 'object') {
             window.location.reload(false);
         });
 
-
         loadContent($.md.mainHref);
 
-		console.log( ':: Before binding' );
-		$( '#srch-term' ).change( function(  ) { 
-			alert( "change" );
-			console.log( '### This is a binding on submit' );
-		} );
-		/*
-		$( '#subsearch' ).on( 'click', function(  ) {  
-				alert( "### This is binding on clicking the button" );
-		} );
-		*/
-		console.log( ':: After binding' );
-		
     });
+
+	// is just copy paste of the function above...
+	// does not know how to trigger it otherwise
+	function showSearch(  ) { 
+        // stage init stuff
+        registerFetchConfig();
+        registerBuildNavigation();
+        extractHashData();
+
+        appendDefaultFilenameToHash();
+
+        $(window).bind('hashchange', function () {
+            window.location.reload(false);
+        });
+
+        loadContent($.md.mainHref);
+	}
+
+	// http://stackoverflow.com/questions/8664486/javascript-code-to-stop-form-submission
+	// This is executed when the form is submited
+	function doSearch(  ) { 
+		var searchterm = $( "#srch-term" ).val(  );
+		console.log( searchterm );
+		searchmd( searchterm );
+		// must be false, otherwise the form is submitted which will lead to an reload. And then everything is gone
+		return false;
+	}
+	function searchmd( searchterm ) { 
+		//function searchmd( ) { 
+		var ajaxReq = {
+			url: 'navigation.md',
+			dataType: 'text'
+		};
+		$.ajax(ajaxReq).done(function(data) {
+				navMD = data;
+				// console.log( navMD );
+				var files = findfiles( navMD );
+				//findInMD( files, 'bana' );
+				var result = findInMD( files, searchterm );
+				$.md.searchresult = "# Searchresult for: \ntest ist";
+				console.log( "result: " + $.md.searchresult );
+				console.log( $.md.searchresult );
+				}).fail(function() {
+					console.log( "faild to retrieve navigation.md" );
+				});
+		//console.log( "finish function" );
+	}
+
+	// Get files listed in navigation.md
+	function findfiles( navMD ) { 
+		// http://stackoverflow.com/a/17779833/1933185
+		var re = /\(([^)]+)\)/g;
+		//var matches = re.exec(navMD);
+		// console.log( matches );
+		var found = navMD.match( re );
+		//console.log( found );
+		return getMD( found );
+		//return found;
+	}
+
+	// tidy up matches, so that they look nice
+	function getMD( files ) { 
+		var newFiles = [];
+		files.forEach( function( value, key ) { 
+			// remove ( , ) , space
+			newFiles.push( value.replace( '(', '' ).replace( ')', '' ).replace( / /g, '' ) );
+			//console.log( key + '> ' + value );
+		} )
+		//console.log( newFiles );
+		return newFiles;
+	}
+
+	function doMarkdown( result ) { 
+		//console.log( "i am in " );
+		var searchterm = result[0].found[0];
+		var resultMarkdown = "# Search for: " + searchterm + "\n\n";
+		result.forEach( function( file ) {  
+			if ( file.found.length > 0) {  
+				//console.log( file.found );
+				// @todo if there are search results for the page I was searching from, the link will not work on the searchresult page
+				// @todo When the search is done from a page in a subfolder, the link will be from the subfolder... this is bad
+				resultMarkdown += "- [" + file.id + "]( " + file.id + " ): " + file.found.length + "\n";
+			}
+		});
+		console.log( resultMarkdown );
+		$.md.searchresult = resultMarkdown;
+		// @todo REALLY REALLY UGGGGGLY
+		// its run every iteration
+		showSearch(  );
+	}
+
+	// @todo search should be not case sensitive
+	function findInMD( files, pattern  ) { 
+
+		// get the input of the search field
+		// console.log( "############## searchterm: " + searchterm );
+		var re = new RegExp(pattern,"g");
+		console.log( 'search for: ' + re );
+		var smatches = [];
+
+		// find pattern in textfile ( closure )
+		function heureka( textfile, filename ) { 
+			// gatekeeper, only md files are allowd in the search result
+			if ( filename.split( "." ).pop(  ) != "md" ) { return; }
+
+			smatches.push( { 'id': filename, 'found': textfile.match( re ) } );
+			// Ugly, ugly, ugly...
+			// Is run on every iteration...
+			doMarkdown( smatches );
+		}
+
+		files.forEach( function( file ) {  
+			// @todo needs to be refactored as function, see getFile(  )
+			//console.log( 'Digging into: ' + file );
+			var ajaxReq = {
+					url: file,
+					dataType: 'text'
+			};
+			$.ajax(ajaxReq).done(function(data) {
+				heureka( data, file );
+				}).fail(function() {
+					console.log( "faild to retrieve navigation.md" );
+				});
+		});
+		console.log( smatches );
+	}
+
+
+
+	// http://stackoverflow.com/q/40547727/1933185
+	// delegate event handler
+	// check for
+	// 	- $( '#srch-term' ).change( function(  ) { } );
+	//	- $( '#subsearch' ).on( 'click', function(  ) {  });
+	$(document).on('click', '#subsearch', function(e) { 
+		console.log( ">> delegate event handler" );
+		doSearch(  );
+	});
 
 	// Make PUBLIC FUNCTION to use search
 	// jerik
@@ -4328,35 +4453,7 @@ function showResult( matches ) {
 
 // @todo need to do a modul which will be registered and used by the PUBLIC API
 
-// http://stackoverflow.com/questions/8664486/javascript-code-to-stop-form-submission
-// This is executed when the form is submited
-function doSearch(  ) { 
-	searchterm = $( "#srch-term" ).val(  );
-	//console.log( searchterm );
-	searchmd( searchterm );
-	// must be false, otherwise the form is submitted which will lead to an reload. And then everything is gone
-	return false;
-}
 
-function searchmd( searchterm ) { 
-//function searchmd( ) { 
-    var ajaxReq = {
-        url: 'navigation.md',
-        dataType: 'text'
-    };
-    $.ajax(ajaxReq).done(function(data) {
-        navMD = data;
-        // console.log( navMD );
-		files = findfiles( navMD );
-		//findInMD( files, 'bana' );
-		findInMD( files, searchterm );
-		$.md.searchresult = "# Searchresult for: \ntest ist";
-		console.log( $.md.searchresult );
-    }).fail(function() {
-		console.log( "faild to retrieve navigation.md" );
-    });
-	//console.log( "finish function" );
-}
 
 /* @todo does not work, need a callback to get fileMD !!!
 function getFile( file ) { 
@@ -4375,58 +4472,7 @@ function getFile( file ) {
 }
 */
 
-function findInMD( files, pattern  ) { 
 
-	// get the input of the search field
-	// console.log( "############## searchterm: " + searchterm );
-	var re = new RegExp(pattern,"g");
-	console.log( 'search for: ' + re );
-	var smatches = [];
-
-	// find pattern in textfile ( closure )
-	function heureka( textfile, filename ) { 
-		smatches.push( { 'id': filename, 'found': textfile.match( re ) } );
-	}
-
-	files.forEach( function( file ) {  
-		// @todo needs to be refactored as function, see getFile(  )
-		//console.log( 'Digging into: ' + file );
-		var ajaxReq = {
-			url: file,
-			dataType: 'text'
-		};
-		$.ajax(ajaxReq).done(function(data) {
-			heureka( data, file );
-		}).fail(function() {
-			console.log( "faild to retrieve navigation.md" );
-		});
-	});
-	console.log( smatches );
-}
-
-// Get files listed in navigation.md
-function findfiles( navMD ) { 
-	// http://stackoverflow.com/a/17779833/1933185
-	var re = /\(([^)]+)\)/g;
-	//var matches = re.exec(navMD);
-	// console.log( matches );
-	var found = navMD.match( re );
-	//console.log( found );
-	return getMD( found );
-	//return found;
-}
-
-// tidy up matches, so that they look nice
-function getMD( files ) { 
-	var newFiles = [];
-	files.forEach( function( value, key ) { 
-		// remove ( , ) , space
-		newFiles.push( value.replace( '(', '' ).replace( ')', '' ).replace( / /g, '' ) );
-		//console.log( key + '> ' + value );
-	} )
-	//console.log( newFiles );
-	return newFiles;
-}
 
 //searchmd(  );
 </script>
