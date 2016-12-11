@@ -145,6 +145,10 @@
     #mdc-customer-segment { }
     #mdc-cost-structure { }
     #mdc-revenue-stream { }
+    #mdc-todo { 
+		padding-top: 20px;
+        font: 14px Arial;
+	}
 
   /*]]>*/
     </style> 
@@ -172,6 +176,7 @@
       <div id="mdc-cost-structure">cost-structure</div>
       <div id="mdc-revenue-stream">revenue-stream</div>
     </div>
+  	<div id="mdc-todo"></div>
   </div>
 	
 	<script type="text/javascript" charset="utf-8">
@@ -212,7 +217,7 @@
 		// console.log( sections );
 
 		$.each( sections, function( key, value ) { 
-			console.log( key + ": " + value );
+			// console.log( key + ": " + value );
 			var tagId = "#" + key;
 			
 			var sdown = new showdown.Converter(  ), text = value, html = sdown.makeHtml( text );

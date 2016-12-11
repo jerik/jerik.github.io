@@ -5,6 +5,7 @@ Create a Lean Canvas out of a markdown list
 Examples are available: 
 
 - [leanCanvas]( mdCanvas.html ) with [startup file: mdCanvas.md]( https://raw.githubusercontent.com/jerik/mdCanvas/master/mdCanvas.md  )
+- [leanCanvas including todolist ]( mdCanvas.html?md=mdCanvasWithTodo ) with [startup file: mdCanvasWithTodo.md]( https://raw.githubusercontent.com/jerik/mdCanvas/master/mdCanvasWithTodo.md  )
 - [leanCanvas]( mdCanvas.html?md=project ) with [project.md]( project.md ) ( Oops, will be rendered as html. Is owed by the behaviour of this wiki. )
 
 ## Getting started
@@ -52,6 +53,12 @@ Create a markdown textfile `project.md` in the same directory as the `mdCanvas.h
 
 	# Unfair-advantage
 	- Goodlike status
+
+### Optional todo list under the canvas
+If you add a todo section in your markdown textfile it will show up under the canvas, see [leanCanvas including todolist]( mdCanvas.html?md=mdCanvasWithTodo ).
+
+	# Todo 
+	- This headline is optional. If not stated it will not show up
 
 ### Open mdCanvas.html with your markdown textfile
 URL: `/path/to/your/mdCanvas.html?md=project`
