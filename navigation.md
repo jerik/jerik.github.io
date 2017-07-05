@@ -7,9 +7,9 @@
 
 [mdCanvas]( )
 
- - [mdCanvas]( mdc/index.md )
+ - [mdCanvas]( mdCanvas/index.md )
  - - - -
  - # Examples
- - [default]( mdc/mdCanvas.html )
- - [default with todolist]( mdc/mdCanvas.html?md=mdCanvasWithTodo )
- - [project.md]( mdc/mdCanvas.html?md=project )
+ - [default]( mdCanvas/mdCanvas.html )
+ - [default with todolist]( mdCanvas/mdCanvas.html?md=mdCanvasWithTodo )
+ - [project.md]( mdCanvas/mdCanvas.html?md=project )
