@@ -42,3 +42,14 @@ Create an function that print and logs
 
     # if ... else
     ["Even" if i % 2 == 0 else "Odd" for i in range(10)]
+
+
+### Lambda
+
+    foo = lambda x, y: x * x + y
+    foo(5,2)  # => 5*5+2 = 27
+    z = 10
+    bar = lambda x, y: foo(x, z) + foo(y, z)
+    bar(5,2)  # => 49 = 5*5+10 + 2*2+10 
+    z = 5 
+    bar(5,2)  # => 39 = 5*5+5 + 2*2+5 
