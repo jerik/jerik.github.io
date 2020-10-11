@@ -8,6 +8,15 @@ E.g. load file tinker.py
     # or inside repl (for python3++)
     exec(open('tinker.py').read())
 
+### Using main()
+Use a main() methode which is called automatically if it is run as script from the console.
+
+    def main(): 
+      print('do something')
+
+    if __name__ == '__main__':
+        main()
+
 ### Logging and debugging
 Make an logging file that has the same name as the script
 
