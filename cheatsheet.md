@@ -62,3 +62,15 @@ Create an function that print and logs
     bar(5,2)  # => 49 = 5*5+10 + 2*2+10 
     z = 5 
     bar(5,2)  # => 39 = 5*5+5 + 2*2+5 
+
+### Ternary Operators
+For better explanation see: https://book.pythontips.com/en/latest/ternary_operators.html
+
+    # Syntax: value_fi_true if condition else value_if_false
+    state = 'nice' if True else 'ugly'  #  => nice
+
+    # Shorthand Syntax: True or "Some", good to define function parameters
+    variable = 'foobar'
+    msg = variable or "No data in variable"  #  => foobar
+
+
