@@ -74,3 +74,26 @@ For better explanation see: https://book.pythontips.com/en/latest/ternary_operat
     msg = variable or "No data in variable"  #  => foobar
 
 
+## Docker
+Usefull cheat sheet: https://dockerlabs.collabnix.com/docker/cheatsheet/
+
+### Start an always on docker container
+Named jupyter. If jupyter/scipy-notebook not locally available it will be downloaded and used
+Open Notebook under https://localhost:8888 in your browser
+
+    docker run --name jupyter --restart unless-stopped -dp 8888:8888 jupyter/scipy-notebook
+
+### Get the token of the jupyter instance in the container
+
+    docker exec jupyter bash -c "jupyter notebook list"
+
+### Management of docker images / containers
+
+    docker ps -a  # list all containers
+    docker stop <name>  # stop container
+    docker rm <name>  # delete container
+    docker -f rm <name>  # stop a running container
+    docker images  # list all images
+    docker rmi <image-id>  # remove image
+
+
