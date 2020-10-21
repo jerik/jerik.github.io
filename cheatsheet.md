@@ -96,4 +96,11 @@ Open Notebook under https://localhost:8888 in your browser
     docker images  # list all images
     docker rmi <image-id>  # remove image
 
+## Jupyter 
+Install library in jupyter
 
+    import sys
+    !{sys.executable} -m pip install numpy 
+    # To install from github
+    !{sys.executable} -m pip install git+https://github.com/jerik/py-money.git#egg=py-money
+    # see: https://stackoverflow.com/a/15268990/1933185
