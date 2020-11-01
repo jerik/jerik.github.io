@@ -110,9 +110,13 @@ Open Notebook under https://localhost:8888 in your browser
     docker ps -a  # list all containers
     docker stop <name>  # stop container
     docker rm <name>  # delete container
-    docker -f rm <name>  # stop a running container
+    docker rm -f <name>  # stop a running container and delete it
     docker images  # list all images
     docker rmi <image-id>  # remove image
+
+### Connect to a docker container
+
+    docker exec -it jupyter bash
 
 ## Jupyter 
 Install library in jupyter
