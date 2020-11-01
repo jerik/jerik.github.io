@@ -73,6 +73,24 @@ For better explanation see: https://book.pythontips.com/en/latest/ternary_operat
     variable = 'foobar'
     msg = variable or "No data in variable"  #  => foobar
 
+### Convert timezones
+More https://www.askpython.com/python-modules/python-pendulum-module
+
+    import pendulum
+    # Time in NY 2020-10-27 11 AM
+    ny = pendulum.datetime(2020,10,27,11, tz='America/New_York')
+    # Convert to german time
+    ny.in_timezone('Europe/Berlin')  # -> DateTime(2020, 10, 27, 17, 0, 0, tzinfo=Timezone('Europe/Berlin'))
+
+### Open file with encoding
+
+    file -I 1234.message.in,maildir,format,S=0815,W=1272:2,S
+    1234.message.in,maildir,format,S=0815,W=1272:2,S: message/rfc822; charset=iso-8859-1
+    
+    foo = r'1234.message.in,maildir,format,S=0815,W=1272:2,S'
+    with open(foo, 'r', encoding='iso-8859-1') as f: 
+        print(f.readlines())
+
 
 ## Docker
 Usefull cheat sheet: https://dockerlabs.collabnix.com/docker/cheatsheet/
