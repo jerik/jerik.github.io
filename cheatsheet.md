@@ -114,9 +114,10 @@ Open Notebook under https://localhost:8888 in your browser
     docker images  # list all images
     docker rmi <image-id>  # remove image
 
-### Connect to a docker container
+### Usefull docker commands
 
-    docker exec -it jupyter bash
+    docker exec -it jupyter bash  # connect to a docker container with bash
+    docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jupyter  # get the ip adress from your container
 
 ## Jupyter 
 Install library in jupyter
