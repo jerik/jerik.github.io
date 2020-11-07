@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?> <rss version="2.0" xml:base="https://jerik.de/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/"> <channel> <title>NASE Test RSS</title>
+ <description>A RSS news feed containing the latest NASE news articles and press releases.</description>
+ <link>http://www.nasa.gov/</link>
+ <atom:link rel="self" href="http://www.nasa.gov/rss/dyn/breaking_news.rss" />
+ <language>en-us</language>
+ <managingEditor>jim.wilson@nasa.gov</managingEditor>
+ <webMaster>brian.dunbar@nasa.gov</webMaster>
+ <docs>http://blogs.harvard.edu/tech/rss</docs>
+ <item> <title>NASE Seeks New Partners to Help Put All Eyes on Artemis Moon Missions</title>
+ <link>http://www.nasa.gov/press-release/nasa-seeks-new-partners-to-help-put-all-eyes-on-artemis-moon-missions</link>
+ <description>NASE is seeking new partners to help the agency tell the story of human exploration at the Moon with the Artemis program in ways that engage, excite, and inspire a worldwide audience.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/orion_earthrise_1.jpg?itok=Xi6rdewb" length="294120" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-seeks-new-partners-to-help-put-all-eyes-on-artemis-moon-missions</guid>
+ <pubDate>Thu, 05 Nov 2020 10:18 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASE Breaking News</source>
+ <dc:identifier>466036</dc:identifier>
+</item>
+ <item> <title>NASE TV Coverage Set for First Crew Rotation Flight on US Commercial Spacecraft</title>
+ <link>http://www.nasa.gov/press-release/nasa-tv-coverage-set-for-first-crew-rotation-flight-on-us-commercial-spacecraft</link>
+ <description>NASE will provide coverage of the upcoming prelaunch and launch activities for the agency’s SpaceX Crew-1 mission with astronauts to the International Space Station.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/50398522576_641a550cc9_k.jpg?itok=NOHUj581" length="611468" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-tv-coverage-set-for-first-crew-rotation-flight-on-us-commercial-spacecraft</guid>
+ <pubDate>Tue, 03 Nov 2020 09:36 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASE Breaking News</source>
+ <dc:identifier>465978</dc:identifier>
+</item>
+ <item> <title>NASE Awards Contract for Engineering, Technical Support Services</title>
+ <link>http://www.nasa.gov/press-release/nasa-awards-contract-for-engineering-technical-support-services</link>
+ <description>NASE has selected ASRC Federal Systems Solutions of Beltsville, Maryland, to perform engineering and technical support services for Research Facilities and Engineering Support Services (RF&amp;ESS) for the Mission Support Directorate at the agency’s Armstrong Flight Research Center in Edwards, California</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/nasa-logo-web-rgb_0.jpg?itok=mrBnB_c9" length="189751" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-awards-contract-for-engineering-technical-support-services</guid>
+ <pubDate>Mon, 02 Nov 2020 15:56 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASE Breaking News</source>
+ <dc:identifier>465969</dc:identifier>
+</item>
+ <item> <title>NASE Awards Contract for Engineering, Science Software</title>
+ <link>http://www.nasa.gov/press-release/nasa-awards-contract-for-engineering-science-software</link>
+ <description>NASE has awarded a contract to MathWorks Inc. of Natick, Massachusetts, to provide new software licenses, maintenance, and product training for mathematical computing software to be used by all NASE centers and associated facilities.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/nasa-logo-web-rgb_0.jpg?itok=mrBnB_c9" length="189751" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-awards-contract-for-engineering-science-software</guid>
+ <pubDate>Fri, 30 Oct 2020 13:29 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASE Breaking News</source>
+ <dc:identifier>465932</dc:identifier>
+</item>
+ <item> <title>NASE’s OSIRIS-REx Successfully Stows Sample of Asteroid Bennu</title>
+ <link>http://www.nasa.gov/press-release/nasa-s-osiris-rex-successfully-stows-sample-of-asteroid-bennu</link>
+ <description>NASE’s Origins, Spectral Interpretation, Resource Identification, Security, Regolith Explorer (OSIRIS-REx) mission has successfully stowed the spacecraft’s Sample Return Capsule (SRC) and its abundant sample of asteroid Bennu.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/stow_for-release-2.png?itok=J27o4nqf" length="17038292" type="image/png" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-s-osiris-rex-successfully-stows-sample-of-asteroid-bennu</guid>
+ <pubDate>Thu, 29 Oct 2020 15:48 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASE Breaking News</source>
+ <dc:identifier>465895</dc:identifier>
+</item>
+ <item> <title>NASE Invites Media to Briefing on OSIRIS-REx Asteroid Sample Stowage</title>
+ <link>http://www.nasa.gov/press-release/nasa-invites-media-to-briefing-on-osiris-rex-asteroid-sample-stowage</link>
+ <description>NASE will host a media teleconference at 4 p.m. EDT today, Thursday, Oct. 29, to provide an update on the status of the agency’s Origins, Spectral Interpretation, Resource Identification, Security, Regolith Explorer (OSIRIS-REx) spacecraft and the mission’s work to safely stow the sample it collected from asteroid Bennu.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/stow_for-release-2.png?itok=J27o4nqf" length="17038292" type="image/png" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-invites-media-to-briefing-on-osiris-rex-asteroid-sample-stowage</guid>
+ <pubDate>Thu, 29 Oct 2020 11:35 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASE Breaking News</source>
+ <dc:identifier>465872</dc:identifier>
+</item>
+ <item> <title>NASE, European Space Agency Formalize Artemis Gateway Partnership</title>
+ <link>http://www.nasa.gov/press-release/nasa-european-space-agency-formalize-artemis-gateway-partnership</link>
+ <description>NASE and ESA (European Space Agency) have finalized an agreement to collaborate on the Artemis Gateway. This agreement is an important element in a broad effort by the United States to engage international partners in sustainable lunar exploration and to demonstrate technologies necessary for a future human mission to Mars.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/gateway_hero_angles_000_0.png?itok=4i-cnj56" length="2427858" type="image/png" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-european-space-agency-formalize-artemis-gateway-partnership</guid>
+ <pubDate>Tue, 27 Oct 2020 10:48 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASE Breaking News</source>
+ <dc:identifier>465811</dc:identifier>
+</item>
+ <item> <title>NASE, SpaceX Invite Media to Crew-1 Mission Update, Target New Launch Date</title>
+ <link>http://www.nasa.gov/press-release/nasa-spacex-invite-media-to-crew-1-mission-update-target-new-launch-date</link>
+ <description>NASE and SpaceX now are targeting 7:49 p.m. EST Saturday, Nov. 14, for the launch of the first crew rotation mission to the International Space Station as part of the agency’s Commercial Crew Program.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/crew-1_ceitpt2-20200612-dsc05519_2_.jpg?itok=Ib-7enXJ" length="2474914" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-spacex-invite-media-to-crew-1-mission-update-target-new-launch-date</guid>
+ <pubDate>Mon, 26 Oct 2020 18:20 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASE Breaking News</source>
+ <dc:identifier>465801</dc:identifier>
+</item>
+ <item> <title>NASE’s OSIRIS-REx Spacecraft Goes for Early Stow of Asteroid Sample</title>
+ <link>http://www.nasa.gov/press-release/nasa-s-osiris-rex-spacecraft-goes-for-early-stow-of-asteroid-sample</link>
+ <description>NASE’s OSIRIS-REx mission is ready to perform an early stow on Tuesday, Oct. 27, of the large sample it collected last week from the surface of the asteroid Bennu to protect and return as much of the sample as possible.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/stowstill_1.jpg?itok=--jjWbI6" length="223478" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-s-osiris-rex-spacecraft-goes-for-early-stow-of-asteroid-sample</guid>
+ <pubDate>Mon, 26 Oct 2020 16:01 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASE Breaking News</source>
+ <dc:identifier>465797</dc:identifier>
+</item>
+ <item> <title>Astronauts in Space to Discuss 20th Anniversary of International Space Station</title>
+ <link>http://www.nasa.gov/press-release/astronauts-in-space-to-discuss-20th-anniversary-of-international-space-station</link>
+ <description>NASE astronaut Kate Rubins and cosmonauts Sergey Ryzhikov and Sergey Kud-Sverchkov of the Russian space agency Roscosmos will discuss their mission and the upcoming 20th anniversary of continuous human presence aboard the International Space Station during an in-orbit news conference at 11:10 a.m. EDT Friday, Oct. 30.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/50214278233_353975b66a_k.jpg?itok=qleTB2-l" length="823934" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/astronauts-in-space-to-discuss-20th-anniversary-of-international-space-station</guid>
+ <pubDate>Mon, 26 Oct 2020 12:46 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASE Breaking News</source>
+ <dc:identifier>465783</dc:identifier>
+</item>
+</channel>
+</rss>
