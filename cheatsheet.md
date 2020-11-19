@@ -128,11 +128,26 @@ Install library in jupyter
     !{sys.executable} -m pip install git+https://github.com/jerik/py-money.git#egg=py-money
     # see: https://stackoverflow.com/a/15268990/1933185
 
+## Pandas 
+### Display options 
+
+    pd.set_option('display.max_row', 1000)  # show max 1000 rows, avoid summarizing
+
+### .loc commands
+# see https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
+
+    df.loc[2, 'column_name']  # show single value at row 2 and in column_name
+    df.loc[2, 'column_name'] = 12  # set value at row 2 in column_name to 12
+    df.loc[1:3, column_name]  # show values at rows 1 - 3 in column_name 
+    df.loc[:3, column_name]  # show values at rows start - 3 in column_name 
+    df.loc[3:, column_name]  # show values at rows 3 - end in column_name 
+    df.loc[:, column_name]  # show whole column_name values
+
 ### Usefull column commands
 
     df.column_name.unique()  # List uniq values in column
     df['column_name'].isnull()  # Check if (known) null types (NA, NaN, " ") are available
-    df['column_name'].fillna(125, inplace=True)  # replace missing values to 125. Important inplace!
+    df['column_name'].fillna(12, inplace=True)  # replace missing values to 12. Important inplace!
     df['column_name'] = df['column_name'].replace(['old'],'new')  # replace a single value
     df['column_name'] = df['column_name'].replace(['old1', 'old2'],'new')  # replace a multiple values with single value
     df['column_name'] = df['column_name'].replace(['old1', 'old2'],['new1', 'new2'])  # replace a multiple values with single value
@@ -158,4 +173,8 @@ Recognice non standard missing values by pandas
 
 Change unexpected type to know missing value, see: https://www.youtube.com/watch?v=ZOX18HfLHGQ
 Find unexpected types and change it to known missing value via np.nan (numpy). e.g. with try: expext
+
+
+### Usefull Resources
+- https://datatofish.com/pandas-series-from-list/
 
