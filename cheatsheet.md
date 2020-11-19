@@ -135,16 +135,24 @@ Install library in jupyter
 
 ### selecting commands
 see https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
+Oops: Both loc and iloc are row-first, column-second. This is the opposite of what we do in native Python, which is column-first, row-second.
 
     df.loc[2, 'column_name']  # show single value at row 2 and in column_name
-      df.column_name.iloc[2]  # alternative way to show single value 
-      df.column_name.loc[2]  # alternative way to shwo single value
-    df.column_name[2] # alternative way
+      df.column_name.loc[2]  
+      df.column_name.iloc[2]  
+      df.iloc[2, 1]  # assuming column_name is on position 1
+      df.column_name[2] 
     df.loc[1:3, column_name]  # show values at rows 1 - 3 in column_name 
     df.loc[:3, column_name]  # show values at rows start - 3 in column_name 
-      df.column_name.loc[:3]  # alternativ way to show first 3 values
-      df.column_name.iloc[:2]  # alternativ way to show first 3 values
-      df.column_name.head(3)  # alterantive way to show first 3 values
+      df.column_name.loc[:3]  
+      df.column_name.iloc[:2]  
+      df.iloc[:2, 1] # assuming column_name is on position 1
+      df.column_name.head(3)  
+    df.loc[[1,4,8], 'column_name']  # select multiple values in column_name
+      df.column_name.loc[1,4,8] 
+      df.column_name.iloc[1,4,8] 
+      df.iloc[[1,4,8], 1 ]  # assuming column_name is on position 1
+    df.loc[[1,4,8], ['column_1', 'column_2']]  # select multiple values in serveral columns
     df.loc[3:, column_name]  # show values at rows 3 - end in column_name 
     df.loc[:, column_name]  # show whole column_name values
 
