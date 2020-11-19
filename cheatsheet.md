@@ -137,11 +137,14 @@ Install library in jupyter
 see https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
 
     df.loc[2, 'column_name']  # show single value at row 2 and in column_name
-    df.column_name.iloc[2]  # alternative way
-    df.column_name.loc[2]  # alternative way
+      df.column_name.iloc[2]  # alternative way to show single value 
+      df.column_name.loc[2]  # alternative way to shwo single value
     df.column_name[2] # alternative way
     df.loc[1:3, column_name]  # show values at rows 1 - 3 in column_name 
     df.loc[:3, column_name]  # show values at rows start - 3 in column_name 
+      df.column_name.loc[:3]  # alternativ way to show first 3 values
+      df.column_name.iloc[:2]  # alternativ way to show first 3 values
+      df.column_name.head(3)  # alterantive way to show first 3 values
     df.loc[3:, column_name]  # show values at rows 3 - end in column_name 
     df.loc[:, column_name]  # show whole column_name values
 
