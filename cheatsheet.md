@@ -131,3 +131,20 @@ Install library in jupyter
 ### Usefull column commands
 
     df.name.unique()  # List uniq values in column
+    df['name'].isnull()  # Check if (known) null types (NA, NaN, " ") are available
+
+
+### Data cleaning
+
+    df.isnull().sum()  # overview of all missing values in the dataframe
+
+Recognice non standard missing values by pandas
+
+    # specifiy non standard missing values
+    missing_values = ['n/a', 'na', '--']  # standard is: NA, NaN, ' '
+    df = read_csv('example.csv', na_values=missing_values)
+    df.name.is_null()  # will now show all missing values recognized by pandas
+
+Change unexpected type to know missing value, see: https://www.youtube.com/watch?v=ZOX18HfLHGQ
+Find unexpected types and change it to known missing value via np.nan (numpy). e.g. with try: expext
+
