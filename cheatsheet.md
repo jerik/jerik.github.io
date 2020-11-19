@@ -155,7 +155,8 @@ Oops: Both loc and iloc are row-first, column-second. This is the opposite of wh
     df.loc[[1,4,8], ['column_1', 'column_2']]  # select multiple values in serveral columns
     df.loc[3:, column_name]  # show values at rows 3 - end in column_name 
     df.loc[:, column_name]  # show whole column_name values
-
+    df.loc[df.column_name == 'pattern']  # selecting rows with 'pattern' in column_name
+    df.loc[(df.column_name.isin(['pat1', 'pat2'])) & (df.other_column > 100)]  # selecting with 2 conditions
 
 ### setting commands
 
