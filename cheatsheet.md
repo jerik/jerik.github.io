@@ -127,3 +127,7 @@ Install library in jupyter
     # To install from github
     !{sys.executable} -m pip install git+https://github.com/jerik/py-money.git#egg=py-money
     # see: https://stackoverflow.com/a/15268990/1933185
+
+### Usefull column commands
+
+    df.name.unique()  # List uniq values in column
