@@ -134,7 +134,7 @@ Install library in jupyter
     pd.set_option('display.max_row', 1000)  # show max 1000 rows, avoid summarizing
 
 ### .loc commands
-# see https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
+see https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
 
     df.loc[2, 'column_name']  # show single value at row 2 and in column_name
     df.loc[2, 'column_name'] = 12  # set value at row 2 in column_name to 12
