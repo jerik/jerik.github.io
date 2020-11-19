@@ -130,13 +130,24 @@ Install library in jupyter
 
 ### Usefull column commands
 
-    df.name.unique()  # List uniq values in column
-    df['name'].isnull()  # Check if (known) null types (NA, NaN, " ") are available
+    df.column_name.unique()  # List uniq values in column
+    df['column_name'].isnull()  # Check if (known) null types (NA, NaN, " ") are available
+    df['column_name'].fillna(125, inplace=True)  # replace missing values to 125. Important inplace!
+    df['column_name'] = df['column_name'].replace(['old'],'new')  # replace a single value
+    df['column_name'] = df['column_name'].replace(['old1', 'old2'],'new')  # replace a multiple values with single value
+    df['column_name'] = df['column_name'].replace(['old1', 'old2'],['new1', 'new2'])  # replace a multiple values with single value
 
+
+### Usefull entire dataframe commands
+
+    df = df.replace(['old'],'new')  # replace value in entire dataframe 
 
 ### Data cleaning
 
+    # remember to do this after you have done basic cleaning: changed unexpexted types and non standard missing values
     df.isnull().sum()  # overview of all missing values in the dataframe
+    df.isnull().values.any()  # are there any missing values
+    df.isnull().sum().sum()  # total number of missing values
 
 Recognice non standard missing values by pandas
 
