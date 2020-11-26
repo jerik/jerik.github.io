@@ -157,6 +157,8 @@ Oops: Both loc and iloc are row-first, column-second. This is the opposite of wh
     df.loc[:, column_name]  # show whole column_name values
     df.loc[df.column_name == 'pattern']  # selecting rows with 'pattern' in column_name
     df.loc[(df.column_name.isin(['pat1', 'pat2'])) & (df.other_column > 100)]  # selecting with 2 conditions
+    df.loc[df.column_name.idxmax(), 'title']  # select the title cell with the highest values in the column_name
+    df.column_name.str.contains('foo').sum()  # show amount of matches for the string 'foo' in the column
 
 ### setting commands
 
@@ -165,6 +167,9 @@ Oops: Both loc and iloc are row-first, column-second. This is the opposite of wh
 ### Usefull column commands
 
     df.column_name.unique()  # List uniq values in column
+    df.column_name.value_counts()  # List uniq values with amount of occurness
+    df.column_name.describe()  # short summary, depends on source numbers vs. text
+    df.column_name.mean()  # show mean
     df['column_name'].isnull()  # Check if (known) null types (NA, NaN, " ") are available
     df['column_name'].fillna(12, inplace=True)  # replace missing values to 12. Important inplace!
     df['column_name'] = df['column_name'].replace(['old'],'new')  # replace a single value
@@ -192,6 +197,14 @@ Recognice non standard missing values by pandas
 
 Change unexpected type to know missing value, see: https://www.youtube.com/watch?v=ZOX18HfLHGQ
 Find unexpected types and change it to known missing value via np.nan (numpy). e.g. with try: expext
+
+### Mapping data / maps
+
+    my_mean = df.column_name.mean(); df.column_name.map(lambda cell: cell - my_mean)  # Do an operation on each cell value of the column
+    my_mean = df.column_name.mean(); df.column_name - my_mean  # use pandas builtin, to achive the same result. Pandas guess what to do
+    def do2(row): return row*2; df.apply(do2, axis='column_name')  # Apply function on each cell on the 'whole' dataframe
+    df.col_1 + " -  " df.col_2  # Merge data of the two cell in each column; Oops columns must have the same length
+
 
 
 ### Usefull Resources
