@@ -176,6 +176,11 @@ Oops: Both loc and iloc are row-first, column-second. This is the opposite of wh
     df['column_name'] = df['column_name'].replace(['old1', 'old2'],'new')  # replace a multiple values with single value
     df['column_name'] = df['column_name'].replace(['old1', 'old2'],['new1', 'new2'])  # replace a multiple values with single value
 
+### Data Grouping and sorting
+
+    df.groupby('column_name').size()  # get a list of values and their amount
+    df.groupby('column_name')['second_column'].agg([min,max])  # show min, max values of the second_column, based on column_name
+    df.groupby(['column_name', 'second_column']).size().sorte_values()  # Combination of column_name and second_column, sorted by counts
 
 ### Usefull entire dataframe commands
 
