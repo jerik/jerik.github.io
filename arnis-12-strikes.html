@@ -71,12 +71,12 @@
 
 				// create text to speak
 				text = trainseq.join()
+				text = text + ' und Fertig'
 
 				// create pause between the strikes
 				const PAUSE_SEC = document.getElementById('slider').value;
 				const PAUSE_MS = PAUSE_SEC * 1000;
 				speakMessage(text, PAUSE_MS)
-				speakMessage("Done")
 			}
 
 			// show slider value
