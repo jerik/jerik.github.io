@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Arnis 12 Strikes</title>
+		<script charset="utf-8">
+			// see: https://stackoverflow.com/a/6274381/1933185
+			function shuffle(a) {
+				for (let i = a.length - 1; i > 0; i--) {
+					const j = Math.floor(Math.random() * (i + 1));
+					[a[i], a[j]] = [a[j], a[i]];
+				}
+				return a
+			}
+			function create_random_strikes(start = 0, stop = 12) {
+				// for (var a=[], i=0; i<12; i++) a[i] = i+1; 
+				for (var a=[], i=start; i<stop; i++) a[i] = i+1; 
+
+				// tidy up, see: https://stackoverflow.com/a/28607462/1933185 
+				a = a.filter(function(element) {
+					return element !== undefined;
+				});
+				// create repetions based on slider 
+				const repetitions = document.getElementById('slider_sets').value;
+				var traindata = [];
+				for(i=0; i<repetitions; i++) {
+					traindata = traindata.concat(a)
+				}
+				// console.log(traindata);
+				shuffle(traindata);
+				return traindata;
+			}
+			// see: https://stackoverflow.com/a/61995057/1933185
+			function speakMessage(message, PAUSE_MS = 500) {
+				  try {
+						const messageParts = message.split(',')
+
+						let currentIndex = 0
+						const speak = (textToSpeak) => {
+						  const msg = new SpeechSynthesisUtterance();
+						  const voices = window.speechSynthesis.getVoices();
+						  // msg.voice = voices[0]; // has effect of the spoken language
+						  msg.volume = 1; // 0 to 1
+						  msg.rate = 1; // 0.1 to 10
+						  msg.pitch = .1; // 0 to 2
+						  msg.text = textToSpeak;
+						  //msg.lang = 'en-US'; // did not had any effect
+						  // msg.lang = 'de-DE'; // did not had any effect
+
+						  msg.onend = function() {
+							currentIndex++;
+							if (currentIndex < messageParts.length) {
+							  setTimeout(() => {
+								speak(messageParts[currentIndex])
+							  }, PAUSE_MS)
+							}
+						  };
+						  speechSynthesis.speak(msg);
+						}
+						speak(messageParts[0])
+					  } catch (e) {
+						console.error(e)
+					  }
+					}
+
+			function train(start,stop) {
+				speakMessage("Get ready")
+				start_adjusted = start - 1;
+				trainseq = create_random_strikes( start_adjusted, stop )
+
+				// create text to speak
+				text = trainseq.join()
+
+				// create pause between the strikes
+				const PAUSE_SEC = document.getElementById('slider').value;
+				const PAUSE_MS = PAUSE_SEC * 1000;
+				speakMessage(text, PAUSE_MS)
+			}
+
+			// show slider value
+			function sliderChange(val, element = 'output') {
+			    document.getElementById(element).innerHTML = val;
+			}
+		</script>
+		<style type="text/css" media="screen">
+			button { 
+				width: 150px;
+				height: 30px ;
+				font-size: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Arnis 12 Strike Sequences</h1>
+		With pushing a button, a voice will speak the numbers of strikes sequenz, described on the button. The strikes are randomly
+		shuffled.<br>
+		With the sliders you can configure the
+		<ul>
+			<li>REPETITION of strikes, e.g. 3 times sequenz 1-5 (if you push button 'Strikes 1-5')</li>
+			<li>PAUSE between the strikes, e.g. 4 seconds</li>
+		</ul>
+		<p style="font-style:italic">Works only on supported browsers. Should be Firefox, Chrome, Edge & Safari</p> 
+		REPETITION of strike sets <output id='output_sets'></output><br>
+		<input type="range" min="1" max="7" value="3" id="slider_sets" oninput="sliderChange(this.value, 'output_sets')"><br>
+		<script charset="utf-8">
+		</script>
+		PAUSE between strikes in seconds: <output id='output'></output><br>
+		<input type="range" min="1" max="7" value="4" id="slider" oninput="sliderChange(this.value)"><br>
+		<script charset="utf-8">
+			var default_pause = 4
+			document.getElementById('slider').value = default_pause;
+			document.getElementById('output').innerHTML = default_pause;
+			var default_sets = 3
+			document.getElementById('slider_sets').value = default_sets;
+			document.getElementById('output_sets').innerHTML = default_sets;
+		</script>
+		<button onclick='javascript:train(1,5)'>Strikes 1-5</button><br><br>
+		<button onclick='javascript:train(6,9)'>Strikes 6-9</button><br><br>
+		<button onclick='javascript:train(10,12)'>Strikes 10-12</button><br><br>
+		<button onclick='javascript:train(6,12)'>Strikes 6-12</button><br><br>
+		<button onclick='javascript:train(1,12)'>All 12</button><br><br>
+	</body>
+</html>

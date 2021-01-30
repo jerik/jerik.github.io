@@ -15,3 +15,5 @@
  - [project.md]( mdCanvas/mdCanvas.html?md=project )
 
 [cheatsheet](cheatsheet.md)
+
+[Arnis](arnis-12-strikes.html)
