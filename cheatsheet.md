@@ -1,6 +1,10 @@
 # Cheatsheet
 
 ## python
+### Formatting
+
+	print("$ {:,.2f}".format(155.23434))
+
 ### Load file into repl to work with it
 E.g. load file tinker.py
 
@@ -135,6 +139,14 @@ Install library in jupyter
 	pd.set_option('display.max_rows', None) # Unlimited rows
 	pd.set_option('display.max_columns', None) # Unlimited columns
 
+### Creating dataframe from list of dicts
+
+	rows = [
+		{ 'konto': 'foo', 'plus': 10, 'minus', -20 }
+		{ 'konto': 'bar', 'plus': 30, 'minus', -40 }
+	]
+	df = pd.DataFrame(rows, columns=['konto', 'plus', 'minus'])
+
 ### Read CSV 
 
 	import pandas as pd 
@@ -177,11 +189,22 @@ Oops: Both loc and iloc are row-first, column-second. This is the opposite of wh
     df.loc[(df.column_name.isin(['pat1', 'pat2'])) & (df.other_column > 100)]  # selecting with 2 conditions
     df.loc[df.column_name.idxmax(), 'title']  # select the title cell with the highest values in the column_name
     df.column_name.str.contains('foo').sum()  # show amount of matches for the string 'foo' in the column
+	df.loc[df.col == 'pattern', 'col2']  # show on filtered rows only col2
+
+### changing commands
+
+	df['new'] df['col'].str.replace(',', '.')  # replaces all , with . (german to english number format)
+	df['new'] = df['col'].str.replace(',','.').astype(float)  # replaces and convert it to float
+
 
 ### setting commands
 
     df.loc[2, 'column_name'] = 12  # set value at row 2 in column_name to 12
+	df['new_col'] = df['old_col']  # create a new column with the data from the old column
 
+### deleting commands
+
+	df.drop('col', axis=1, inplace=True)  # axis: 0 => rows, 1 => cols
 ### Usefull column commands
 
     df.column_name.unique()  # List uniq values in column
@@ -210,6 +233,7 @@ Oops: Both loc and iloc are row-first, column-second. This is the opposite of wh
     df.isnull().sum()  # overview of all missing values in the dataframe
     df.isnull().values.any()  # are there any missing values
     df.isnull().sum().sum()  # total number of missing values
+	df.info()  # if all columns have same number of non-null items, perfect. Otherwise you have to clean up
 
 Recognice non standard missing values by pandas
 
@@ -227,6 +251,11 @@ Find unexpected types and change it to known missing value via np.nan (numpy). e
     my_mean = df.column_name.mean(); df.column_name - my_mean  # use pandas builtin, to achive the same result. Pandas guess what to do
     def do2(row): return row*2; df.apply(do2, axis='column_name')  # Apply function on each cell on the 'whole' dataframe
     df.col_1 + " -  " df.col_2  # Merge data of the two cell in each column; Oops columns must have the same length
+
+### Pivote tables
+
+	import numpy as np
+	pd.pivot_table(df, index='konto', values='wert', aggfunc=np.sum)  # konto = col where the grouping shall take place; wert = values
 
 
 
