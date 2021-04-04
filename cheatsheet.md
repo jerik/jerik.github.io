@@ -133,6 +133,22 @@ Install library in jupyter
 
     pd.set_option('display.max_row', 1000)  # show max 1000 rows, avoid summarizing
 
+### Read CSV 
+
+	import pandas as pd 
+	df = pd.read_csv('../file.csv', sep=';')
+
+### Get column headers
+
+	df.columns
+	df.columns.values
+	sorted(df)
+
+### change column headers
+
+	df.rename(columns={'Foo':'Foobar'}, inplace=True) # Change one column header
+	df.columns = [x.lower() for x in sorted(df)]  # set all column headers, here in small cases
+
 ### selecting commands
 see https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
 Oops: Both loc and iloc are row-first, column-second. This is the opposite of what we do in native Python, which is column-first, row-second.
