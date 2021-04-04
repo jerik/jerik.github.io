@@ -132,6 +132,8 @@ Install library in jupyter
 ### Display options 
 
     pd.set_option('display.max_row', 1000)  # show max 1000 rows, avoid summarizing
+	pd.set_option('display.max_rows', None) # Unlimited rows
+	pd.set_option('display.max_columns', None) # Unlimited columns
 
 ### Read CSV 
 
