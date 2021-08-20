@@ -1,0 +1,56 @@
+##
+# Host blocking list
+# see https://www.geextreme.com/computing/advice/how-to-kill-taboola-forever/
+
+127.0.0.1	localhost
+::1	localhost
+
+# [taboola outbrain etc]
+127.0.0.1 popup.taboola.com
+127.0.0.1 www.popup.taboola.com
+127.0.0.1 taboola.com
+127.0.0.1 www.taboola.com
+127.0.0.1 cdn.taboolasyndication.com
+127.0.0.1 taboolasyndication.com
+127.0.0.1 www.taboolasyndication.com
+127.0.0.1 www.cdn.taboolasyndication.com
+127.0.0.1 trc.taboola.com
+127.0.0.1 www.trc.taboola.com
+127.0.0.1 images.taboola.com
+127.0.0.1 adserver.adtechus.com
+127.0.0.1 www.adserver.adtechus.com
+127.0.0.1 us-u.openx.net
+127.0.0.1 www.us-u.openx.net
+127.0.0.1 api.taboola.com
+127.0.0.1 www.api.taboola.com
+127.0.0.1 c2.taboola.com
+127.0.0.1 www.c2.taboola.com
+127.0.0.1 cdn.taboola.com
+127.0.0.1 www.cdn.taboola.com
+127.0.0.1 urc.taboolasyndication.com
+127.0.0.1 www.urc.taboolasyndication.com
+127.0.0.1 taboola.com.edgekey.net
+127.0.0.1 www.taboola.com.edgekey.net
+127.0.0.1 esd-secure.taboola.com.edgekey.net
+127.0.0.1 www.esd-secure.taboola.com.edgekey.net
+127.0.0.1 nr.taboola.com
+127.0.0.1 api.taboola.com
+127.0.0.1 c2.taboola.com
+127.0.0.1 https://cdn.taboola.com
+127.0.0.1 urc.taboolasyndication.com
+127.0.0.1 taboola.com.edgekey.net
+127.0.0.1 esd-secure.taboola.com.edgekey.net
+127.0.0.1 cdn.taboolasyndication.co
+127.0.0.1 oooutbrain.com
+127.0.0.1 www.outbrain.com
+127.0.0.1 odb.outbrain.com
+127.0.0.1 images.outbrain.com
+127.0.0.1 log.outbrain.com
+127.0.0.1 amplify.outbrain.com
+127.0.0.1 amplifypixel.outbrain.com
+127.0.0.1 vra.outbrain.com
+127.0.0.1 widgets.outbrain.com
+127.0.0.1 sync.outbrain.com
+127.0.0.1 tr.outbrain.com
+127.0.0.1 vrp.outbrain.com
+127.0.0.1 vrt.outbrain.com
