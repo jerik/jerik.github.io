@@ -191,6 +191,11 @@ Oops: Both loc and iloc are row-first, column-second. This is the opposite of wh
     df.column_name.str.contains('foo').sum()  # show amount of matches for the string 'foo' in the column
 	df.loc[df.col == 'pattern', 'col2']  # show on filtered rows only col2
 
+### groupby commands
+	df.groupby(['col1', 'col2']).count()  # show the items of col2 grouped in col1
+	df.groupby('kid')['vb'].nunique())  # show the count of col2 grouped in col1
+	
+
 ### changing commands
 
 	df['new'] df['col'].str.replace(',', '.')  # replaces all , with . (german to english number format)
